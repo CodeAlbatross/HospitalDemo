@@ -11,6 +11,22 @@ public class Patient {
     private Integer id;
     @Column
     private String patName;
+    @Column
+    private String patGender;
+    @Column
+    private Integer patAge;
+    @Column
+    private String patDoctor;
+    @Column
+    private String patIllness;
+    @Column
+    private Integer patRoomNum;
+    @Column
+    private Integer patBedNum;
+    @Column
+    private String patTel;
+    @Column
+    private String patRemarks;
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)//可选属性optional=false,表示doctor不能为空。删除病人，不影响医生
     @JoinColumn(name = "doctor_id")
@@ -54,12 +70,85 @@ public class Patient {
         this.sickroom = sickroom;
     }
 
+    public String getPatGender() {
+        return patGender;
+    }
+
+    public void setPatGender(String patGender) {
+        this.patGender = patGender;
+    }
+
+    public Integer getPatAge() {
+        return patAge;
+    }
+
+    public void setPatAge(Integer patAge) {
+        this.patAge = patAge;
+    }
+
+    public String getPatDoctor() {
+        return patDoctor;
+    }
+
+    public void setPatDoctor(String patDoctor) {
+        this.patDoctor = patDoctor;
+    }
+
+    public String getPatIllness() {
+        return patIllness;
+    }
+
+    public void setPatIllness(String patIllness) {
+        this.patIllness = patIllness;
+    }
+
+    public Integer getPatRoomNum() {
+        return patRoomNum;
+    }
+
+    public void setPatRoomNum(Integer patRoomNum) {
+        this.patRoomNum = patRoomNum;
+    }
+
+    public Integer getPatBedNum() {
+        return patBedNum;
+    }
+
+    public void setPatBedNum(Integer patBedNum) {
+        this.patBedNum = patBedNum;
+    }
+
+    public String getPatTel() {
+        return patTel;
+    }
+
+    public void setPatTel(String patTel) {
+        this.patTel = patTel;
+    }
+
+    public String getPatRemarks() {
+        return patRemarks;
+    }
+
+    public void setPatRemarks(String patRemarks) {
+        this.patRemarks = patRemarks;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", PatName='" + patName + '\'' +
+                ", patName='" + patName + '\'' +
+                ", patGender='" + patGender + '\'' +
+                ", patAge='" + patAge + '\'' +
+                ", patDoctor='" + patDoctor + '\'' +
+                ", patIllness='" + patIllness + '\'' +
+                ", patRoomNum=" + patRoomNum +
+                ", patBedNum=" + patBedNum +
+                ", patTel='" + patTel + '\'' +
+                ", patRemarks='" + patRemarks + '\'' +
                 ", doctor=" + doctor +
+                ", sickroom=" + sickroom +
                 '}';
     }
 }

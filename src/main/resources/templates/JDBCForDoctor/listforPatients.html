@@ -37,12 +37,12 @@
       <div class="main_container">
 
         <!--引入侧边栏-->
-        <div th:replace="commons/barForAdmin::sidebar"></div>
+        <div th:replace="commons/barForDoctor::sidebar"></div>
 
         <!-- 顶部导航 -->
         <div class="top_nav">
           <!--引入顶部栏-->
-          <div th:replace="commons/barForAdmin::topbar"></div>
+          <div th:replace="commons/barForDoctor::topbar"></div>
         </div>
         <!-- /顶部导航 -->
 
@@ -51,7 +51,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>病房信息列表</h3>
+                <h3>患者信息列表</h3>
               </div>
             </div>
 
@@ -84,12 +84,15 @@
                             <thead>
                               <tr>
 
-                                <th>病房名称</th>
-                                <th>负责人</th>
-                                <th>最大床位</th>
-                                <th>负责人电话</th>
-                                <th>病房地址</th>
-                                <th>操作</th>
+                                <th>患者姓名</th>
+                                <th>性别</th>
+                                <th>年纪</th>
+                                <th>入院时间</th>
+                                <th>主治医师</th>
+                                <th>病症</th>
+                                <th>病房号</th>
+                                <th>床位号</th>
+                                <th>联系方式</th>
                               </tr>
                             </thead>
 
@@ -99,6 +102,9 @@
 
                                 <td th:text="${room.roomName}">System Architect</td>
                                 <td th:text="${room.roomAdminName}">Edinburgh</td>
+                                <td th:text="${room.bedMaxNum}">61</td>
+                                <td th:text="${room.roomAdminTel}">2011/04/25</td>
+                                <td th:text="${room.roomAdd}">320,800</td>
                                 <td th:text="${room.bedMaxNum}">61</td>
                                 <td th:text="${room.roomAdminTel}">2011/04/25</td>
                                 <td th:text="${room.roomAdd}">320,800</td>

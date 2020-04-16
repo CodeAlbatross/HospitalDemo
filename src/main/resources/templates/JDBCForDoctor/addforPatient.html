@@ -94,20 +94,30 @@
                                         </div>
                                     </div>
                                     <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">年龄<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="1"  name="roomAdminName"
+                                                   placeholder="18" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">入院时间<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input type="date" name="birth" class="form-control" placeholder="zhangsan" >
+                                            <input type="datetime-local" name="birth" class="form-control"  >
                                         </div>
                                     </div>
 
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">主治医师姓名<span
                                                 class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="1"  name="roomAdminName"
-                                                   placeholder="张三" required="required" />
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <select class="form-control">
+                                                <option th:each="doc:${doctors}" th:text="${doc.docName}">Choose option</option>
+                                            </select>
                                         </div>
+
                                     </div>
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">病症<span
@@ -145,7 +155,7 @@
 
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">备注<span
-                                                class="required">*</span></label>
+                                                class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <textarea required="required" name="roomAdd"></textarea></div>
                                     </div>
