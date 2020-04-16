@@ -51,7 +51,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>添加医生账户</h3>
+                        <h3>个人信息维护</h3>
                     </div>
 
 
@@ -73,47 +73,33 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form class="" th:action="@{/submitdoc}" method="post" >
-
+                                <form class="" th:action="@{/submitadmin}" method="post" novalidate>
                                     <input type="hidden" name="_method" value="put" />
-                                    <input type="hidden" name="id"   th:value="${doc.id}"/>
+                                    <input type="hidden" name="id"   th:value="${admin.id}"/>
 
-                                    <span class="section">医生信息</span>
+                                    <span class="section">管理员信息</span>
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">医生姓名<span
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">管理员姓名<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="1"  name="docName"
-                                                   placeholder="张三" required="required" th:value="${doc.docName}" />
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="adminName"
+                                                   placeholder="张三" th:value="${admin.adminName}" required="required" />
                                         </div>
                                     </div>
-
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">医生账号<span
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">账户<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"  name="loginNum"
-                                                    required="required" th:value="${doc.loginNum}"/>
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="adminAccount"
+                                                   placeholder="张三" th:value="${admin.adminAccount}" required="required" />
                                         </div>
                                     </div>
-
-                                    <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">性别<span
-                                            class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6">
-                                        M:
-                                        <input type="radio" class="flat" name="docSex" id="genderM" value="M" checked="" required /> F:
-                                        <input type="radio" class="flat" name="docSex" id="genderF" value="F" />
-                                        </div>
-                                    </div>
-
-
 
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">邮箱地址<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control email" name="docEmail"  required="required" type="email" th:value="${doc.docEmail}" /></div>
+                                            <input class="form-control email" name="adminEmail"  required="required" th:value="${admin.adminEmail}" type="email" /></div>
                                     </div>
 
 
@@ -123,35 +109,22 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">密码<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" type="password" name="DocPsw" data-validate-length="6,8"
-                                                   required="required" th:value="${doc.docPsw}"/></div>
+                                            <input class="form-control" type="password" name="adminPsw" data-validate-length="6,8"
+                                                   required="required" th:value="${admin.adminPsw}" /></div>
                                     </div>
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">确认密码<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" type="password" name="DocPsw2" data-validate-linked="password"
-                                                   required="required" th:value="${doc.docPsw}" /></div>
-                                    </div>
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">电话号码<span
-                                                class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input class="form-control tel" type="tel"  name="docTel" required="required"
-                                                   data-validate-length-range="8,20" th:value="${doc.docTel}" /></div>
+                                            <input class="form-control" type="password" name="adminPsw2" data-validate-linked="password"
+                                                   required="required" th:value="${admin.adminPsw}" /></div>
                                     </div>
 
-                                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">住址<span
-                                                class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <textarea required="required" name="docAdd" th:text="${doc.docAdd}"></textarea></div>
-                                    </div>
 
                                     <div class="ln_solid">
                                         <div class="form-group">
                                             <div class="col-md-6 offset-md-3">
-                                                <button type="submit" class="btn btn-primary" >提交</button>
+                                                <button type="submit" class="btn btn-primary">提交</button>
                                                 <button type="reset" class="btn btn-success">清空</button>
                                             </div>
                                         </div>
