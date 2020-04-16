@@ -86,31 +86,33 @@
 
                                 <th>患者姓名</th>
                                 <th>性别</th>
-                                <th>年纪</th>
+                                <th>年龄</th>
                                 <th>入院时间</th>
                                 <th>主治医师</th>
                                 <th>病症</th>
-                                <th>病房号</th>
+                                <th>病房</th>
                                 <th>床位号</th>
                                 <th>联系方式</th>
+                                <th>操作</th>
                               </tr>
                             </thead>
 
 
                             <tbody>
-                              <tr th:each="room:${rooms}">
+                              <tr th:each="pat:${pats}">
 
-                                <td th:text="${room.roomName}">System Architect</td>
-                                <td th:text="${room.roomAdminName}">Edinburgh</td>
-                                <td th:text="${room.bedMaxNum}">61</td>
-                                <td th:text="${room.roomAdminTel}">2011/04/25</td>
-                                <td th:text="${room.roomAdd}">320,800</td>
-                                <td th:text="${room.bedMaxNum}">61</td>
-                                <td th:text="${room.roomAdminTel}">2011/04/25</td>
-                                <td th:text="${room.roomAdd}">320,800</td>
+                                <td th:text="${pat.patName}">System Architect</td>
+                                <td th:text="${pat.patGender}">Edinburgh</td>
+                                <td th:text="${pat.patAge}">System Architect</td>
+                                <td th:text="${pat.birth}">61</td>
+                                <td th:text="${pat.patDoctor}">2011/04/25</td>
+                                <td th:text="${pat.patIllness}">320,800</td>
+                                <td th:text="${pat.patRoomName}">61</td>
+                                <td th:text="${pat.patBedNum}">2011/04/25</td>
+                                <td th:text="${pat.patTel}">320,800</td>
                                 <td>
-                                  <a class="btn btn-sm btn-primary" th:href="@{/room/}+${room.id}">编辑</a>
-                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/room/}+${room.id}">删除</button>
+                                  <a class="btn btn-sm btn-primary" th:href="@{/room/}+${pat.id}">编辑</a>
+                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/room/}+${pat.id}">删除</button>
                                 </td>
 
                               </tr>
