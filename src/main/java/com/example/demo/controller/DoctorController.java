@@ -24,19 +24,21 @@ public class DoctorController {
     public String list(Model model){
         Collection<Patient> patients = patientRepository.findAll();
         model.addAttribute("pats",patients);
-        return "JDBCForDoctor/listforPatients.html";
+
+        return "JDBCForDoctor/listforPatients";
 
     }
 
     @GetMapping("/addPatient")
-    public String add(){
-        return "JDBCForDoctor/addforPatient.html";
+    public String add(Model model){
+        Collection<Doctor> doctors = doctorRepository.findAll();
+        model.addAttribute("doctors",doctors);
+        return "JDBCForDoctor/addforPatient";
     }
 
     @PostMapping("/submitpat")
-    public String submitpat(Patient patient,Model model){
-        Collection<Doctor> doctors = doctorRepository.findAll();
-        model.addAttribute("doctors",doctors);
+    public String submitpat(Patient patient){
+
         patientRepository.save(patient);
         return "redirect:/patients";
 
