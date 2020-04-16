@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Administrator
- * 检查登录
+ * 注册拦截器检查登录
  */
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     //目标方法执行之前

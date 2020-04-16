@@ -20,13 +20,15 @@ public class Patient {
     @Column
     private String patIllness;
     @Column
-    private Integer patRoomNum;
+    private String patRoomName;
     @Column
     private Integer patBedNum;
     @Column
     private String patTel;
     @Column
     private String patRemarks;
+    @Column
+    private String birth;//入院时间
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)//可选属性optional=false,表示doctor不能为空。删除病人，不影响医生
     @JoinColumn(name = "doctor_id")
@@ -102,12 +104,12 @@ public class Patient {
         this.patIllness = patIllness;
     }
 
-    public Integer getPatRoomNum() {
-        return patRoomNum;
+    public String getPatRoomName() {
+        return patRoomName;
     }
 
-    public void setPatRoomNum(Integer patRoomNum) {
-        this.patRoomNum = patRoomNum;
+    public void setPatRoomName(String patRoomNum) {
+        this.patRoomName = patRoomNum;
     }
 
     public Integer getPatBedNum() {
@@ -134,20 +136,29 @@ public class Patient {
         this.patRemarks = patRemarks;
     }
 
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
                 "id=" + id +
                 ", patName='" + patName + '\'' +
                 ", patGender='" + patGender + '\'' +
-                ", patAge='" + patAge + '\'' +
+                ", patAge=" + patAge +
                 ", patDoctor='" + patDoctor + '\'' +
                 ", patIllness='" + patIllness + '\'' +
-                ", patRoomNum=" + patRoomNum +
+                ", patRoomNum=" + patRoomName +
                 ", patBedNum=" + patBedNum +
                 ", patTel='" + patTel + '\'' +
                 ", patRemarks='" + patRemarks + '\'' +
-                ", doctor=" + doctor +
+                ", birth=" + birth +
+
                 ", sickroom=" + sickroom +
                 '}';
     }

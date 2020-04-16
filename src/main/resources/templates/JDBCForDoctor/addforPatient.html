@@ -80,7 +80,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">患者姓名<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="1"  name="roomName"
+                                            <input class="form-control" data-validate-length-range="1"  name="patName"
                                                    placeholder="李华" required="required" />
                                         </div>
                                     </div>
@@ -89,15 +89,15 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             M:
-                                            <input type="radio" class="flat" name="docSex" id="genderM" value="M" checked="" required /> F:
-                                            <input type="radio" class="flat" name="docSex" id="genderF" value="F" />
+                                            <input type="radio" class="flat" name="patGender" id="genderM" value="M" checked="" required /> F:
+                                            <input type="radio" class="flat" name="patGender" id="genderF" value="F" />
                                         </div>
                                     </div>
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">年龄<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="1"  name="roomAdminName"
+                                            <input class="form-control" data-validate-length-range="1"  name="patAge"
                                                    placeholder="18" required="required" />
                                         </div>
                                     </div>
@@ -113,8 +113,8 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">主治医师姓名<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select class="form-control">
-                                                <option th:each="doc:${doctors}" th:text="${doc.docName}">Choose option</option>
+                                            <select class="form-control" name="patDoctor">
+                                                <option  th:each="doc:${doctors}" th:text="${doc.docName}">Choose option</option>
                                             </select>
                                         </div>
 
@@ -123,23 +123,24 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">病症<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="1"  name="roomAdminName"
+                                            <input class="form-control" data-validate-length-range="1"  name="patIllness"
                                                    placeholder="肺炎" required="required" />
                                         </div>
                                     </div>
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">病房号<span
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">病房<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"   name="bedMaxNum"
-                                                   required="required" />
+                                            <select class="form-control" name="patRoomName">
+                                                <option th:each="room:${rooms}" th:text="${room.roomName}">Choose option</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">床位号<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control"   name="bedMaxNum"
+                                            <input class="form-control"   name="patBedNum"
                                                     required="required" />
                                         </div>
                                     </div>
@@ -149,7 +150,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">电话号码<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input class="form-control tel" type="tel"  name="roomAdminTel" required="required"
+                                            <input class="form-control tel" type="tel"  name="patTel" required="required"
                                                    data-validate-length-range="8,20" /></div>
                                     </div>
 
@@ -157,7 +158,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">备注<span
                                                 class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <textarea required="required" name="roomAdd"></textarea></div>
+                                            <textarea required="required" name="patRemarks"></textarea></div>
                                     </div>
 
                                     <div class="ln_solid">

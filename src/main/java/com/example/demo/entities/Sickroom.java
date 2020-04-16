@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,8 @@ public class Sickroom {
 
     @Column
     private String roomAdd;//病房地址
+
+
 
     @OneToMany(mappedBy = "sickroom",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Patient> patients = new HashSet<>();//病人列表
