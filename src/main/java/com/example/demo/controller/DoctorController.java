@@ -9,10 +9,7 @@ import com.example.demo.repository.SickroomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -66,6 +63,7 @@ public class DoctorController {
 
     /**
      * 提交添加的医生
+     * 记得把多对一的一端添加到多端的属性中
      * */
     @PostMapping("/submitpat")
     public String submitpat(Patient patient){
@@ -81,7 +79,6 @@ public class DoctorController {
     }
 
     /**
-     *
      * @param id
      * @return
      * 删除一对多的多端时，要解除一端对于多端的联系
@@ -99,6 +96,51 @@ public class DoctorController {
 
         patientRepository.deleteById(id);
 
+        return "redirect:/patients";
+    }
+
+    /**
+     * 拉取所有医生病房返回到页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/patient/{id}")
+    public String update(@PathVariable("id") Integer id,
+                         Model model){
+        Patient patient = patientRepository.findById(id).orElse(null);
+        Collection<Doctor> doctors = doctorRepository.findAll();
+        Collection<Sickroom> sickrooms = sickroomRepository.findAll();
+
+        Iterator<Sickroom> it = sickrooms.iterator();
+        //判断病房是否为空
+        while (it.hasNext()){
+            Sickroom sickroom=it.next();
+
+            if(sickroom.getBedMaxNum()-sickroom.getOccupiedBed() == 0){
+
+                it.remove();
+            }
+        }
+
+        model.addAttribute("patient",patient);
+        model.addAttribute("doctors",doctors);
+        model.addAttribute("rooms",sickrooms);
+        return "JDBCForDoctor/updateforPatient";
+    }
+
+    /**
+     * 记得把多对一的一端添加到多端的属性中
+     * @param patient
+     * @return
+     */
+    @PutMapping("/updatepat")
+    public String submit(Patient patient){
+        Doctor doctor = doctorRepository.findByDocName(patient.getPatDoctor());
+        Sickroom sickroom = sickroomRepository.findByRoomName(patient.getPatRoomName());
+        patient.setDoctor(doctor);
+        patient.setSickroom(sickroom);
+        patientRepository.save(patient);
         return "redirect:/patients";
     }
 
