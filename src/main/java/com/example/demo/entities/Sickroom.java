@@ -109,7 +109,7 @@ public class Sickroom {
                 ", occupiedBed=" + occupiedBed +
                 ", roomAdminTel='" + roomAdminTel + '\'' +
                 ", roomAdd='" + roomAdd + '\'' +
-                ", patients=" + patients +
+               // ", patients=" + patients +
                 '}';
     }
 }

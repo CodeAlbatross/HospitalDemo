@@ -111,8 +111,8 @@
                                 <td th:text="${pat.patBedNum}">2011/04/25</td>
                                 <td th:text="${pat.patTel}">320,800</td>
                                 <td>
-                                  <a class="btn btn-sm btn-primary" th:href="@{/room/}+${pat.id}">编辑</a>
-                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/room/}+${pat.id}">删除</button>
+                                  <a class="btn btn-sm btn-primary" th:href="@{/patient/}+${pat.id}">编辑</a>
+                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/patient/}+${pat.id}">删除</button>
                                 </td>
 
                               </tr>

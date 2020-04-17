@@ -9,7 +9,9 @@ import com.example.demo.repository.SickroomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
@@ -76,6 +78,28 @@ public class DoctorController {
 
         return "redirect:/patients";
 
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * 删除一对多的多端时，要解除一端对于多端的联系
+     */
+    @DeleteMapping("/patient/{id}")
+    public String delete(@PathVariable("id") Integer id){
+        System.out.println("删除患者"+patientRepository.findById(id));
+        Patient patient = patientRepository.findById(id).get();
+
+        Sickroom sickroom= patient.getSickroom();
+        Doctor doctor=patient.getDoctor();
+
+        doctor.getPatients().remove(patient);
+        sickroom.getPatients().remove(patient);
+
+        patientRepository.deleteById(id);
+
+        return "redirect:/patients";
     }
 
 }
