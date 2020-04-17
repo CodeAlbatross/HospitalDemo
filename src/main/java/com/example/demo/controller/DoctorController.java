@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author lzyyy
@@ -28,11 +30,12 @@ public class DoctorController {
     @Autowired
     DoctorRepository doctorRepository;
 
-    @GetMapping("/patients")
-    public String list(Model model){
-        Collection<Patient> patients = patientRepository.findAll();
-        model.addAttribute("pats",patients);
+    @GetMapping("/patients/{id}")
+    public String list(Model model,
+                       @PathVariable("id") Integer id){
+        Collection<Patient> patients = patientRepository.findAllByDoctor(doctorRepository.findById(id).orElse(null));
 
+        model.addAttribute("pats",patients);
         return "JDBCForDoctor/listforPatients";
 
     }
@@ -65,8 +68,9 @@ public class DoctorController {
      * 提交添加的医生
      * 记得把多对一的一端添加到多端的属性中
      * */
-    @PostMapping("/submitpat")
-    public String submitpat(Patient patient){
+    @PostMapping("/submitpat/{id}")
+    public String submitpat(Patient patient,
+                            @PathVariable("id") Integer id){
         Doctor doctor = doctorRepository.findByDocName(patient.getPatDoctor());
         Sickroom sickroom = sickroomRepository.findByRoomName(patient.getPatRoomName());
 
@@ -74,7 +78,7 @@ public class DoctorController {
         patient.setSickroom(sickroom);
         patientRepository.save(patient);
 
-        return "redirect:/patients";
+        return "redirect:/patients/"+id;
 
     }
 

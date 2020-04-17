@@ -15,11 +15,18 @@ public class SickroomController {
     @Autowired
     SickroomRepository sickroomRepository;
 
-    @GetMapping("/sickrooms")
-    public String roomlist(Model model){
+    @GetMapping("/sickrooms/{id}")
+    public String roomlist(Model model,
+                           @PathVariable("id") Integer id){
         Collection<Sickroom> sickrooms = sickroomRepository.findAll();
         model.addAttribute("rooms",sickrooms);
+        if(id==0){
         return "JDBCForSickroom/listforSickroom";
+        }else if (id==1){
+            return "JDBCForSickroom/listforSickroomDoc";
+        }else {
+            return "";
+        }
     }
 
     @GetMapping("/addSickroom")

@@ -22,7 +22,7 @@
             </div>
             <div class="profile_info">
                 <span>欢迎,</span>
-                <h2>医生:[[${session.loginuser}]]</h2>
+                <h2 >医生:[[${session.loginuser}]]</h2>
             </div>
         </div>
         <!-- /菜单配置文件快速信息 -->
@@ -36,13 +36,13 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> 患者管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#" th:href="@{/patients}">查看患者信息</a></li>
+                            <li><a href="#" th:href="@{/patients/}+${session.id}">查看患者信息</a></li>
                             <li><a href="#" th:href="@{/addPatient}">添加患者信息</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> 病房查询 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#" th:href="@{/SickroomsByDoctor}">病房列表</a></li>
+                            <li><a href="#" th:href="@{/sickrooms/1}">病房列表</a></li>
                             <li><a href="#" th:href="@{/AdminSickroomByDoctor}">管理病房</a></li>
 
 

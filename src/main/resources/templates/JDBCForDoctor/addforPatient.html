@@ -73,7 +73,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form class="" th:action="@{/submitpat}" method="post" novalidate>
+                                <form class=""  th:action="@{/submitpat/}+${session.id}" method="post" novalidate>
 
                                     <span class="section">患者信息</span>
                                     <div class="field item form-group">
