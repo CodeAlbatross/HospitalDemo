@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
+/**
+ * @author 刘知远
+ */
 @Controller
 public class AdminController {
 
@@ -70,6 +73,13 @@ public class AdminController {
         return "redirect:/doctors";
     }
 
+
+    /**
+     * 管理员信息维护
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/uploadadmin/{id}")
     public String uploadself(@PathVariable("id") Integer id,Model model){
         Admin admin = adminRepository.findById(id).orElse(null);

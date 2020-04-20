@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entities.Admin;
 import com.example.demo.entities.Doctor;
 import com.example.demo.entities.Patient;
 import com.example.demo.entities.Sickroom;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -146,6 +148,23 @@ public class DoctorController {
         patient.setSickroom(sickroom);
         patientRepository.save(patient);
         return "redirect:/patients";
+    }
+
+    @GetMapping("/updatedoctor/{id}")
+    public String uploadself(@PathVariable("id") Integer id,Model model){
+        Doctor doctor = doctorRepository.findById(id).orElse(null);
+        model.addAttribute("doctor",doctor);
+        return "/JDBCForDoctor/updateforDoctor2";
+    }
+
+    @PutMapping("/submitdoctor")
+    public String uploadAdmin(Doctor doctor,
+                              HttpSession session){
+        doctorRepository.save(doctor);
+        session.setAttribute("loginuser",doctor.getDocName());
+        System.out.println("修改成功"+doctor);
+        return "redirect:/updatedoctor/"+doctor.getId();
+
     }
 
 }
