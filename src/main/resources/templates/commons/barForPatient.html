@@ -36,7 +36,8 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> 我的信息 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#" th:href="@{/patients/}+${session.id}">我的主治医师</a></li>
+                            <li><a href="#" th:href="@{/myDoctor/}">我的病历</a></li>
+                            <li><a href="#" th:href="@{/myDoctor/}+${session.id}">我的主治医师</a></li>
                             <li><a href="#" th:href="@{/addPatient}">我的病房</a></li>
                         </ul>
                     </li>
