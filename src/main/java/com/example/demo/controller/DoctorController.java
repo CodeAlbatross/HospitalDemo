@@ -32,14 +32,26 @@ public class DoctorController {
     @Autowired
     DoctorRepository doctorRepository;
 
+    /**
+     * 我的患者列表，获取医生id得到所属id患者信息
+     * @param model
+     * @param id
+     * @return
+     */
     @GetMapping("/patients/{id}")
     public String list(Model model,
                        @PathVariable("id") Integer id){
         Collection<Patient> patients = patientRepository.findAllByDoctor(doctorRepository.findById(id).orElse(null));
+        //在医生或者病房修改后，同步患者所属医生或病房名称
+        Iterator<Patient> iterator = patients.iterator();
+        while (iterator.hasNext()){
+            Patient patient = iterator.next();
+            patient.setPatDoctor(patient.getDoctor().getDocName());
+            patient.setPatRoomName(patient.getSickroom().getRoomName());
+        }
 
         model.addAttribute("pats",patients);
         return "JDBCForDoctor/listforPatients";
-
     }
 
     /**
@@ -106,6 +118,7 @@ public class DoctorController {
     }
 
     /**
+     * 编辑患者信息
      * 拉取所有医生病房返回到页面
      * @param id
      * @param model
@@ -137,6 +150,7 @@ public class DoctorController {
 
     /**
      * 记得把多对一的一端添加到多端的属性中
+     * 提交更新后的患者信息
      * @param patient
      * @return
      */
@@ -147,8 +161,9 @@ public class DoctorController {
         patient.setDoctor(doctor);
         patient.setSickroom(sickroom);
         patientRepository.save(patient);
-        return "redirect:/patients";
+        return "redirect:/patients/"+doctor.getId();
     }
+
 
     @GetMapping("/updatedoctor/{id}")
     public String uploadself(@PathVariable("id") Integer id,Model model){
