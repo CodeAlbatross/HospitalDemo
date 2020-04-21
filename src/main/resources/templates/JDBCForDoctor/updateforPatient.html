@@ -104,6 +104,14 @@
                                         </div>
                                     </div>
                                     <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">身份证号码<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="1"  name="patIdCardNum"
+                                                   required="required" th:value="${patient.patIdCardNum}" />
+                                        </div>
+                                    </div>
+                                    <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">入院时间<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">

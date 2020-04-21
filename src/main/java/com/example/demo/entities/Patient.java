@@ -29,6 +29,8 @@ public class Patient {
     private String patRemarks;
     @Column
     private String birth;//入院时间
+    @Column
+    private String patIdCardNum;//身份证号码
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)//可选属性optional=false,表示doctor不能为空。删除病人，不影响医生
     @JoinColumn(name = "doctor_id")
@@ -142,6 +144,14 @@ public class Patient {
 
     public void setBirth(String birth) {
         this.birth = birth;
+    }
+
+    public String getPatIdCardNum() {
+        return patIdCardNum;
+    }
+
+    public void setPatIdCardNum(String idCardNum) {
+        this.patIdCardNum = idCardNum;
     }
 
     @Override

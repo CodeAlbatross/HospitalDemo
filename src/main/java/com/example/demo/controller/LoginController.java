@@ -32,6 +32,7 @@ public class LoginController {
                                   HttpSession session){
         Admin admin = adminRepository.findByAdminAccountAndAdminPsw(username,password);
         Doctor doctor = doctorRepository.findByLoginNumAndDocPsw(username,password);
+        Patient patient = patientRepository.findByPatNameAndPatIdCardNum(username,password);
         //Patient patient = patientRepository
         //根据用户名密码在哪个数据库来决定登入哪个操作页面
         if (admin != null){
@@ -46,6 +47,12 @@ public class LoginController {
             System.out.println(username+":"+password);
             session.setAttribute("id",doctor.getId());
             return "redirect:/DoctorPage.html";
+        }else if(patient!=null){
+            session.setAttribute("log",username);
+            session.setAttribute("loginuser",patient.getPatName());
+            System.out.println(username+":"+password);
+            session.setAttribute("id",patient.getId());
+            return "redirect:/PatientPage.html";
         } else {
             map.put("msg","用户名密码错误");
             System.out.println("error");

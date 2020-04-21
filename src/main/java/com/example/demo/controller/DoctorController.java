@@ -42,6 +42,7 @@ public class DoctorController {
     public String list(Model model,
                        @PathVariable("id") Integer id){
         Collection<Patient> patients = patientRepository.findAllByDoctor(doctorRepository.findById(id).orElse(null));
+
         //在医生或者病房修改后，同步患者所属医生或病房名称
         Iterator<Patient> iterator = patients.iterator();
         while (iterator.hasNext()){

@@ -18,6 +18,7 @@ public class HelloConfig implements WebMvcConfigurer {
                 registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/DoctorPage.html").setViewName("DoctorPage");
                 registry.addViewController("/AdminPage.html").setViewName("AdminPage");
+                registry.addViewController("/PatientPage.html").setViewName("PatientPage");
 
 
             }

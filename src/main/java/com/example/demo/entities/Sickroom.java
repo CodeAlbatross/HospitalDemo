@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class Sickroom {
     private Integer bedMaxNum;//最大床位数
 
     @Column
-    private Integer occupiedBed=0;//已被占床位
+    private Integer occupiedBed=0;//已被占床位数目
 
     @Column
     private String roomAdminTel;//负责人电话号码

@@ -13,6 +13,7 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
     Patient findByPatName(String PatName);
     Patient deleteByPatName(String PatName);
     List<Patient> findAllByDoctor(Doctor doctor);
+    Patient findByPatNameAndPatIdCardNum(String PatName,String PatIdCardNum);
 
 
 
