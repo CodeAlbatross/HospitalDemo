@@ -17,6 +17,9 @@ public class Admin {
     @Column
     private String adminEmail;
 
+    @Column
+    private final String role = "admin";
+
     public Integer getId() {
         return id;
     }
@@ -55,6 +58,10 @@ public class Admin {
 
     public void setAdminEmail(String adminEmail) {
         this.adminEmail = adminEmail;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override

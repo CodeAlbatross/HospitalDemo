@@ -49,6 +49,7 @@ public class DoctorController {
             Patient patient = iterator.next();
             patient.setPatDoctor(patient.getDoctor().getDocName());
             patient.setPatRoomName(patient.getSickroom().getRoomName());
+            patientRepository.save(patient);
         }
 
         model.addAttribute("pats",patients);

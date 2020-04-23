@@ -31,6 +31,8 @@ public class Patient {
     private String birth;//入院时间
     @Column
     private String patIdCardNum;//身份证号码
+    @Column
+    private final String role="patient";
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)//可选属性optional=false,表示doctor不能为空。删除病人，不影响医生
     @JoinColumn(name = "doctor_id")
@@ -154,6 +156,10 @@ public class Patient {
         this.patIdCardNum = idCardNum;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -163,12 +169,13 @@ public class Patient {
                 ", patAge=" + patAge +
                 ", patDoctor='" + patDoctor + '\'' +
                 ", patIllness='" + patIllness + '\'' +
-                ", patRoomNum=" + patRoomName +
+                ", patRoomName='" + patRoomName + '\'' +
                 ", patBedNum=" + patBedNum +
                 ", patTel='" + patTel + '\'' +
                 ", patRemarks='" + patRemarks + '\'' +
-                ", birth=" + birth +
-
+                ", birth='" + birth + '\'' +
+                ", patIdCardNum='" + patIdCardNum + '\'' +
+                ", doctor=" + doctor +
                 ", sickroom=" + sickroom +
                 '}';
     }
