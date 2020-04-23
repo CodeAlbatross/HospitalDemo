@@ -86,6 +86,7 @@
 
                               <th>姓名</th>
                               <th>性别</th>
+                                <th>所在科室</th>
                               <th>邮箱</th>
                               <th>联系方式</th>
 
@@ -97,15 +98,11 @@
 
                             <tbody>
                             <tr th:each="doc:${mydoc}">
-
-                              <td th:text="${doc.docName}">System Architect</td>
-                              <td th:text="${doc.docSex}">Edinburgh</td>
-                              <td th:text="${doc.docEmail}">61</td>
-                              <td th:text="${doc.docTel}">2011/04/25</td>
-
-
-
-
+                                <td th:text="${doc.docName}">System Architect</td>
+                                <td th:text="${doc.docSex}">Edinburgh</td>
+                                <td th:text="${doc.docDepartment}"></td>
+                                <td th:text="${doc.docEmail}">61</td>
+                                <td th:text="${doc.docTel}">2011/04/25</td>
                             </tr>
 
                             </tbody>

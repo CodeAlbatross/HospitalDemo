@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collection;
+
 @Controller
 public class PatientController {
     @Autowired
@@ -39,6 +41,12 @@ public class PatientController {
         return "JDBCForPatient/listforMyDoctor";
     }
 
+    /**
+     * 查询我的病房信息
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/mySickroom/{id}")
     public String mySickroom(@PathVariable("id") Integer id,
                              Model model){
@@ -47,6 +55,16 @@ public class PatientController {
         model.addAttribute("myroom",sickroom);
         model.addAttribute("patient",patient);
         return "JDBCForPatient/listforMySickroom";
+    }
+
+    /**
+     * 查询所有医生
+     */
+    @GetMapping(value = "/doctorsforpatient")
+    public String doctors(Model model){
+        Collection<Doctor> doctors = doctorRepository.findAll();
+        model.addAttribute("doctors",doctors);
+        return "JDBCForPatient/listforDoctor";
     }
 
 }

@@ -89,6 +89,15 @@
                                     </div>
 
                                     <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">所在科室<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="1"  name="docDepartment"
+                                                   placeholder="张三" required="required" th:value="${doc.docDepartment}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">医生账号<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
@@ -173,7 +182,7 @@
     </div>
 </div>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
 <script src="../vendors/validator/multifield.js"></script>
 <script src="../vendors/validator/validator.js"></script>
 

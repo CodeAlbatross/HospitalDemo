@@ -25,6 +25,8 @@ public class Doctor {
     private String docAdd;
     @Column
     private String docEmail;
+    @Column
+    private String docDepartment;
 
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     //级联保存、更新、删除、刷新;延迟加载。当删除用户，会级联删除该用户的所有文章
@@ -107,6 +109,14 @@ public class Doctor {
 
     public void setPatients(Set<Patient> patients) {
         this.patients = patients;
+    }
+
+    public String getDocDepartment() {
+        return docDepartment;
+    }
+
+    public void setDocDepartment(String docDepartment) {
+        this.docDepartment = docDepartment;
     }
 
     @Override

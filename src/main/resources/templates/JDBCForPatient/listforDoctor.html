@@ -37,12 +37,12 @@
       <div class="main_container">
 
         <!--引入侧边栏-->
-        <div th:replace="commons/barForAdmin::sidebar"></div>
+        <div th:replace="commons/barForPatient::sidebar"></div>
 
         <!-- 顶部导航 -->
         <div class="top_nav">
           <!--引入顶部栏-->
-          <div th:replace="commons/barForAdmin::topbar"></div>
+          <div th:replace="commons/barForPatient::topbar"></div>
         </div>
         <!-- /顶部导航 -->
 
@@ -86,32 +86,25 @@
 
                                 <th>姓名</th>
                                 <th>性别</th>
-                                <th>所在科室</th>
+                                  <th>所在科室</th>
                                 <th>邮箱</th>
                                 <th>联系方式</th>
-                                <th>地址</th>
-                                <th>账号</th>
-                                <th>密码</th>
-                                <th>操作</th>
+
                               </tr>
                             </thead>
 
 
                             <tbody>
-                              <tr th:each="doc:${docs}">
-
+                              <tr th:each="doc:${doctors}">
                                 <td th:text="${doc.docName}">System Architect</td>
                                 <td th:text="${doc.docSex}">Edinburgh</td>
-                                <td th:text="${doc.docDepartment}"></td>
+                                  <td th:text="${doc.docDepartment}">System Architect</td>
                                 <td th:text="${doc.docEmail}">61</td>
                                 <td th:text="${doc.docTel}">2011/04/25</td>
-                                <td th:text="${doc.docAdd}">320,800</td>
-                                <td th:text="${doc.loginNum}"></td>
-                                <td th:text="${doc.docPsw}"></td>
-                                <td>
-                                  <a class="btn btn-sm btn-primary" th:href="@{/doc/}+${doc.id}">编辑</a>
-                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/doc/}+${doc.id}">删除</button>
-                                </td>
+
+
+
+
 
                               </tr>
 
