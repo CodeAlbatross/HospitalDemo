@@ -67,4 +67,11 @@ public class PatientController {
         return "JDBCForPatient/listforDoctor";
     }
 
+    @GetMapping(value = "/sickroomsforpatient")
+    public String sickrooms(Model model){
+        Collection<Sickroom> sickrooms = sickroomRepository.findAll();
+        model.addAttribute("rooms",sickrooms);
+        return "JDBCForPatient/listforSickroom";
+    }
+
 }
