@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.entities.Doctor;
 import com.example.demo.entities.Patient;
+import com.example.demo.entities.Sickroom;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.repository.SickroomRepository;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +37,16 @@ public class PatientController {
         Doctor doctor = patient.getDoctor();
         model.addAttribute("mydoc",doctor);
         return "JDBCForPatient/listforMyDoctor";
+    }
+
+    @GetMapping(value = "/mySickroom/{id}")
+    public String mySickroom(@PathVariable("id") Integer id,
+                             Model model){
+        Patient patient = patientRepository.findById(id).orElse(null);
+        Sickroom sickroom = patient.getSickroom();
+        model.addAttribute("myroom",sickroom);
+        model.addAttribute("patient",patient);
+        return "JDBCForPatient/listforMySickroom";
     }
 
 }
