@@ -73,7 +73,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form class=""  th:action="@{/submitpat/}+${session.id}" method="post" novalidate>
+                                <form class=""  th:action="@{/submitpat/}+${id}"  method="post" novalidate>
 
                                     <span class="section">患者信息</span>
                                     <div class="field item form-group">
@@ -123,6 +123,7 @@
                                         <div class="col-md-6 col-sm-6 ">
                                             <select class="form-control" name="patDoctor">
                                                 <option  th:each="doc:${doctors}" th:text="${doc.docName}">Choose option</option>
+
                                             </select>
                                         </div>
 
@@ -140,7 +141,7 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <select class="form-control" name="patRoomName">
-                                                <option th:each="room:${rooms}" th:text="${room.roomName}">Choose option</option>
+                                                <option th:each="room:${rooms}" th:text="${room.roomName}" >Choose option</option>
                                             </select>
                                         </div>
                                     </div>
@@ -149,7 +150,7 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control"   name="patBedNum"
-                                                    required="required" />
+                                                    required="required"  />
                                         </div>
                                     </div>
 

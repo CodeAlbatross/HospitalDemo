@@ -59,8 +59,9 @@ public class DoctorController {
     /**
      * 跳转到添加界面
      * */
-    @GetMapping("/addPatient")
-    public String add(Model model){
+    @GetMapping("/addPatient/{id}")
+    public String add(Model model,
+                      @PathVariable("id") Integer id){
         Collection<Doctor> doctors = doctorRepository.findAll();
         Collection<Sickroom> sickrooms = sickroomRepository.findAll();
         Iterator<Sickroom> it = sickrooms.iterator();
@@ -74,9 +75,10 @@ public class DoctorController {
                 it.remove();
             }
         }
-
         model.addAttribute("doctors",doctors);
         model.addAttribute("rooms",sickrooms);
+        model.addAttribute("loginId",id);
+
         return "JDBCForDoctor/addforPatient";
     }
 
@@ -92,6 +94,7 @@ public class DoctorController {
 
         patient.setDoctor(doctor);
         patient.setSickroom(sickroom);
+        patient.setId(null);
         patientRepository.save(patient);
 
         return "redirect:/patients/"+id;

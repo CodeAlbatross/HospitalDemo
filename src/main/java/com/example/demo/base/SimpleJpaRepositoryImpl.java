@@ -54,17 +54,20 @@ public class SimpleJpaRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> {
             optionalT = findById(entityId);
         }
         //获取空属性并处理成null
-        String[] nullProperties = getNullProperties(entity);
+        S entity1 = entity;
+
+        String[] nullProperties = getNullProperties(entity1);
         //若根据ID查询结果为空
         if (!optionalT.isPresent()) {
             //新增
+
             em.persist(entity);
             return entity;
         } else {
             //1.获取最新对象
             T target = optionalT.get();
             //2.将非空属性覆盖到最新对象
-            BeanUtils.copyProperties(entity, target, nullProperties);
+            BeanUtils.copyProperties(entity1, target, nullProperties);
             //3.更新非空属性
             em.merge(target);
             return entity;

@@ -38,13 +38,13 @@ public class SickroomController {
     public String submitroom(Sickroom sickroom){
         sickroomRepository.save(sickroom);
         System.out.println("新增的病房"+sickroom);
-        return "redirect:/sickrooms";
+        return "redirect:/sickrooms/0";
     }
 
     @DeleteMapping("/room/{id}")
     public String deleteroom(@PathVariable("id") Integer id){
         sickroomRepository.deleteById(id);
-        return "redirect:/sickrooms";
+        return "redirect:/sickrooms/0";
     }
 
     //跳转到更新相应id病房信息页面，并拉取相应id病房信息回显
@@ -59,6 +59,6 @@ public class SickroomController {
     public String update(Sickroom sickroom){
         sickroomRepository.save(sickroom);
         System.out.println("修改的病房"+sickroom);
-        return "redirect:/sickrooms";
+        return "redirect:/sickrooms/0";
     }
 }

@@ -8,6 +8,7 @@ import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,8 @@ public class LoginController {
     public String LoginController(@RequestParam("username") String username,
                                   @RequestParam("password") String password,
                                   Map<String,Object> map,
-                                  HttpSession session){
+                                  HttpSession session,
+                                  Model model){
         Admin admin = adminRepository.findByAdminAccountAndAdminPsw(username,password);
         Doctor doctor = doctorRepository.findByLoginNumAndDocPsw(username,password);
         Patient patient = patientRepository.findByPatNameAndPatIdCardNum(username,password);
@@ -52,6 +54,7 @@ public class LoginController {
             session.setAttribute("loginuser",patient.getPatName());
             System.out.println(username+":"+password);
             session.setAttribute("id",patient.getId());
+            model.addAttribute("loginId",patient.getId());
             return "redirect:/PatientPage.html";
         } else {
             map.put("msg","用户名密码错误");
