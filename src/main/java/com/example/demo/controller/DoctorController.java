@@ -58,23 +58,19 @@ public class DoctorController {
 
     /**
      * 跳转到添加界面
-     * */
+     * @param model
+     * @param id 登录的人的id
+     * @return
+     */
     @GetMapping("/addPatient/{id}")
     public String add(Model model,
                       @PathVariable("id") Integer id){
         Collection<Doctor> doctors = doctorRepository.findAll();
         Collection<Sickroom> sickrooms = sickroomRepository.findAll();
-        Iterator<Sickroom> it = sickrooms.iterator();
 
         //判断病房是否为空
-        while (it.hasNext()){
-            Sickroom sickroom=it.next();
+        sickrooms.removeIf(sickroom -> sickroom.getBedMaxNum() - sickroom.getOccupiedBed() == 0);
 
-            if(sickroom.getBedMaxNum()-sickroom.getOccupiedBed() == 0){
-
-                it.remove();
-            }
-        }
         model.addAttribute("doctors",doctors);
         model.addAttribute("rooms",sickrooms);
         model.addAttribute("loginId",id);
@@ -83,15 +79,15 @@ public class DoctorController {
     }
 
     /**
-     * 提交添加的医生
+     * 提交添加的患者
      * 记得把多对一的一端添加到多端的属性中
+     * @param id 登陆的人的id
      * */
     @PostMapping("/submitpat/{id}")
     public String submitpat(Patient patient,
                             @PathVariable("id") Integer id){
         Doctor doctor = doctorRepository.findByDocName(patient.getPatDoctor());
         Sickroom sickroom = sickroomRepository.findByRoomName(patient.getPatRoomName());
-
         patient.setDoctor(doctor);
         patient.setSickroom(sickroom);
         patient.setId(null);
@@ -102,7 +98,7 @@ public class DoctorController {
     }
 
     /**
-     * @param id
+     * @param id 患者id
      * @return
      * 删除一对多的多端时，要解除一端对于多端的联系
      */
@@ -125,7 +121,7 @@ public class DoctorController {
     /**
      * 编辑患者信息
      * 拉取所有医生病房返回到页面
-     * @param id
+     * @param id 患者id
      * @param model
      * @return
      */
@@ -136,16 +132,8 @@ public class DoctorController {
         Collection<Doctor> doctors = doctorRepository.findAll();
         Collection<Sickroom> sickrooms = sickroomRepository.findAll();
 
-        Iterator<Sickroom> it = sickrooms.iterator();
         //判断病房是否为空
-        while (it.hasNext()){
-            Sickroom sickroom=it.next();
-
-            if(sickroom.getBedMaxNum()-sickroom.getOccupiedBed() == 0){
-
-                it.remove();
-            }
-        }
+        sickrooms.removeIf(sickroom -> sickroom.getBedMaxNum() - sickroom.getOccupiedBed() == 0);
 
         model.addAttribute("patient",patient);
         model.addAttribute("doctors",doctors);

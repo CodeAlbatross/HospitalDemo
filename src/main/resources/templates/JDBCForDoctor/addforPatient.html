@@ -57,7 +57,7 @@
 
                 </div>
                 <div class="clearfix"></div>
-
+                <form class=""  th:action="@{/submitpat/}+${id}"  method="post" novalidate>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="x_panel">
@@ -73,7 +73,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form class=""  th:action="@{/submitpat/}+${id}"  method="post" novalidate>
+
 
                                     <span class="section">患者信息</span>
                                     <div class="field item form-group">
@@ -170,19 +170,270 @@
                                             <textarea required="required" name="patRemarks"></textarea></div>
                                     </div>
 
-                                    <div class="ln_solid">
-                                        <div class="form-group">
-                                            <div class="col-md-6 offset-md-3">
-                                                <button type="submit" class="btn btn-primary" >提交</button>
-                                                <button type="reset" class="btn btn-success">清空</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--清除浮动-->
+                <div class="clearfix"></div>
+
+                <div class="row">
+
+
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div style="text-align: center;color: black">
+                                    <h3>xxx医院住院病历</h3>
+                                </div>
+
+
+                            </div>
+                            <div class="x_content" style="font-size: 15px">
+                                <table style="text-align: left" width="100%" class="thicker">
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">姓名<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                        required="required"  />
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">病房<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                        required="required" />
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">床号<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                        required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td>
+                                            <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">住院号<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                        required="required" />
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr>
+                                <table style="text-align: left;border-collapse: separate;border-spacing: 0 10px;" width="100%" >
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">姓名<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">籍贯<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">性别<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">住址<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">年龄<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">工作单位<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">婚姻<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">入院日期<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">民族<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">病史采集日期<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">职业<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">病史陈述者<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">过敏史<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                        <td><div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">记录日期<span
+                                                    class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                       required="required" />
+                                            </div>
+                                        </div></td>
+                                    </tr>
+                                </table>
+                                <hr>
+                                <table>
+                                    <tr><td><div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">主诉<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-12">
+                                            <input class="form-control" data-validate-length-range="1"  name="patName"
+                                                   required="required" />
+                                        </div>
+                                    </div></td></tr>
+                                </table>
+                                <hr>
+
+
+                                       <div class="field item form-group">
+                                            <strong>现病史：</strong>
+                                                <textarea style="resize: both;width: 80%" required="required" name="patRemarks" ></textarea>
+
+                                            </div>
+
+
+
+                                        <div class="field item form-group">
+                                            <strong>既往史：</strong>
+                                            <textarea style="resize: both;width: 80%" required="required" name="patRemarks" ></textarea>
+
+                                        </div>
+
+
+                                      <div class="field item form-group">
+                                            <strong>婚育史：</strong>
+                                            <textarea style="resize: both;width: 80%" required="required" name="patRemarks" ></textarea>
+
+                                        </div>
+
+
+                                    <div class="field item form-group">
+                                            <strong>家族史：</strong>
+                                            <textarea style="resize: both;width: 80%" required="required" name="patRemarks" ></textarea>
+
+                                        </div>
+
+
+                                <h4 style="text-align: center"><strong>体格检查</strong></h4>
+                                <div class="field item form-group">
+
+                                    <textarea style="resize: both;width: 100%" required="required" name="patRemarks" ></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                    <div class="ln_solid">
+                        <div class="form-group">
+                            <div class="col-md-6 offset-md-3">
+                                <button type="submit" class="btn btn-primary" >提交</button>
+                                <button type="reset" class="btn btn-success">清空</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
         <!-- /页面内容 -->

@@ -43,6 +43,10 @@ public class Patient {
     private Sickroom sickroom;//所属病房
 
 
+    @OneToOne(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private TblCard tblCard;
+
+
 
     public Doctor getDoctor() {
         return doctor;
@@ -158,6 +162,14 @@ public class Patient {
 
     public String getRole() {
         return role;
+    }
+
+    public TblCard getTblCard() {
+        return tblCard;
+    }
+
+    public void setTblCard(TblCard tblCard) {
+        this.tblCard = tblCard;
     }
 
     @Override
