@@ -81,7 +81,7 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                   placeholder="李华" required="required" />
+                                                   placeholder="李华" required="required" id="patName" onkeyup="document.getElementById('patName1').value=this.value;document.getElementById('patName2').value=this.value" onblur="document.getElementById('patName1').value=this.value;document.getElementById('patName2').value=this.value"/>
                                         </div>
                                     </div>
                                     <div class="field item form-group">
@@ -98,7 +98,7 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control" data-validate-length-range="1"  name="patAge"
-                                                   placeholder="18" required="required" />
+                                                   placeholder="18" id="patAge" required="required" onkeyup="document.getElementById('patAge1').value=this.value" onblur="document.getElementById('patAge1').value=this.value"/>
                                         </div>
                                     </div>
                                     <div class="field item form-group">
@@ -113,7 +113,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">入院时间<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input type="datetime-local" name="birth" class="form-control"  >
+                                            <input type="datetime-local" name="birth" class="form-control"  onkeyup="document.getElementById('birth1').value=this.value" onblur="document.getElementById('birth1').value=this.value">
                                         </div>
                                     </div>
 
@@ -140,7 +140,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">病房<span
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" name="patRoomName">
+                                            <select class="form-control" name="patRoomName"  onchange="document.getElementById('room1').value=this.value" onblur="document.getElementById('room1').value=this.value">
                                                 <option th:each="room:${rooms}" th:text="${room.roomName}" >Choose option</option>
                                             </select>
                                         </div>
@@ -150,7 +150,7 @@
                                                 class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control"   name="patBedNum"
-                                                    required="required"  />
+                                                    required="required" onkeyup="document.getElementById('bed1').value=this.value" onblur="document.getElementById('bed1').value=this.value">
                                         </div>
                                     </div>
 
@@ -206,7 +206,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                        required="required"  />
+                                                        required="required" id="patName1"  />
                                             </div>
                                         </div>
                                         </td>
@@ -216,7 +216,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                        required="required" />
+                                                        required="required" id="room1"/>
                                             </div>
                                         </div>
                                         </td>
@@ -225,7 +225,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                        required="required" />
+                                                        required="required" id="bed1" />
                                             </div>
                                         </div></td>
                                         <td>
@@ -248,7 +248,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                       required="required" />
+                                                       required="required" id="patName2" />
                                             </div>
                                         </div></td>
                                         <td><div class="field item form-group">
@@ -284,7 +284,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                       required="required" />
+                                                       required="required" id="patAge1"/>
                                             </div>
                                         </div></td>
                                         <td><div class="field item form-group">
@@ -310,7 +310,7 @@
                                                     class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="1"  name="patName"
-                                                       required="required" />
+                                                       required="required" id="birth1"/>
                                             </div>
                                         </div></td>
                                     </tr>
