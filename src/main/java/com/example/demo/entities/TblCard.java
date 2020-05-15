@@ -16,7 +16,7 @@ public class TblCard  implements Serializable {
 
 
 	@Id
-   	@Column(name = "id" )
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
 	private Long id;
 
    	@Column(name = "pat_add" )
@@ -26,22 +26,22 @@ public class TblCard  implements Serializable {
 	private String patAge;
 
    	@Column(name = "pat_allergy_history" )
-	private String patAllergyHistory;
+	private String patAllergyHistory;//过敏史
 
    	@Column(name = "pat_bed_num" )
 	private String patBedNum;
 
    	@Column(name = "pat_chief_complaint" )
-	private String patChiefComplaint;
+	private String patChiefComplaint;//主诉
 
    	@Column(name = "pat_collection_date" )
-	private String patCollectionDate;
+	private String patCollectionDate;//收集日期
 
    	@Column(name = "pat_current_medical_history" )
-	private String patCurrentMedicalHistory;
+	private String patCurrentMedicalHistory;//现病史
 
    	@Column(name = "pat_date" )
-	private String patDate;
+	private String patDate;//入院日期
 
    	@Column(name = "pat_date_of_medical_history_collection" )
 	private String patDateOfMedicalHistoryCollection;
@@ -56,28 +56,28 @@ public class TblCard  implements Serializable {
 	private String patHometown;
 
    	@Column(name = "pat_marry" )
-	private Boolean patMarry;
+	private String patMarry;
 
    	@Column(name = "pat_marry_history" )
 	private String patMarryHistory;
 
    	@Column(name = "pat_medical_history_narrator" )
-	private String patMedicalHistoryNarrator;
+	private String patMedicalHistoryNarrator;//病史陈述者
 
    	@Column(name = "pat_name" )
 	private String patName;
 
    	@Column(name = "pat_nation" )
-	private String patNation;
+	private String patNation;//民族
 
    	@Column(name = "pat_num" )
 	private String patNum;
 
    	@Column(name = "pat_past_history" )
-	private String patPastHistory;
+	private String patPastHistory;//既往史
 
    	@Column(name = "pat_physical" )
-	private String patPhysical;
+	private String patPhysical;//体格检查
 
    	@Column(name = "pat_room" )
 	private String patRoom;
@@ -203,11 +203,11 @@ public class TblCard  implements Serializable {
 		this.patHometown = patHometown;
 	}
 
-	public Boolean getPatMarry() {
+	public String getPatMarry() {
 		return this.patMarry;
 	}
 
-	public void setPatMarry(Boolean patMarry) {
+	public void setPatMarry(String patMarry) {
 		this.patMarry = patMarry;
 	}
 

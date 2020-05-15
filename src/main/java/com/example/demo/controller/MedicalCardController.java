@@ -12,4 +12,10 @@ public class MedicalCardController {
         return "JDBCForPatient/MedicalCard";
 
     }
+
+    @GetMapping(value = "/MedicalCardForDoctor/{id}")
+    public String MedicalCardForDoctor(@PathVariable("id") Integer id){
+        return "JDBCForPatient/MedicalCard";
+
+    }
 }

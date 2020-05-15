@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.entities.Admin;
-import com.example.demo.entities.Doctor;
-import com.example.demo.entities.Patient;
-import com.example.demo.entities.Sickroom;
+import com.example.demo.entities.*;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.repository.SickroomRepository;
+import com.example.demo.repository.TblRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +29,9 @@ public class DoctorController {
 
     @Autowired
     DoctorRepository doctorRepository;
+
+    @Autowired
+    TblRepository tblRepository;
 
     /**
      * 我的患者列表，获取医生id得到所属id患者信息
@@ -85,13 +86,21 @@ public class DoctorController {
      * */
     @PostMapping("/submitpat/{id}")
     public String submitpat(Patient patient,
-                            @PathVariable("id") Integer id){
+                            @PathVariable("id") Integer id,
+                            TblCard tblCard){
         Doctor doctor = doctorRepository.findByDocName(patient.getPatDoctor());
         Sickroom sickroom = sickroomRepository.findByRoomName(patient.getPatRoomName());
+
         patient.setDoctor(doctor);
         patient.setSickroom(sickroom);
+        //patient.setTblCard(null);
+        tblCard.setPatient(patient);
+
         patient.setId(null);
+        tblCard.setId(null);
+
         patientRepository.save(patient);
+        tblRepository.save(tblCard);
 
         return "redirect:/patients/"+id;
 
@@ -106,6 +115,7 @@ public class DoctorController {
     public String delete(@PathVariable("id") Integer id){
         System.out.println("删除患者"+patientRepository.findById(id));
         Patient patient = patientRepository.findById(id).get();
+        int id1 = patient.getDoctor().getId();//找到医生的id
 
         Sickroom sickroom= patient.getSickroom();
         Doctor doctor=patient.getDoctor();
@@ -113,9 +123,10 @@ public class DoctorController {
         doctor.getPatients().remove(patient);
         sickroom.getPatients().remove(patient);
 
+
         patientRepository.deleteById(id);
 
-        return "redirect:/patients";
+        return "redirect:/patients/"+id1;
     }
 
     /**
