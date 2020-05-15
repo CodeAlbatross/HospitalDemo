@@ -31,23 +31,23 @@
     FormValidator.prototype = {
         // Validation error texts
         texts : {
-            invalid         : '非法输入',
-            short           : '输入太短',
-            long            : '输入太长',
-            checked         : '必须被校验',
-            empty           : '请输入信息',
-            select          : '请选择一个选项',
-            number_min      : '太短',
-            number_max      : '太长',
-            url             : '无效的网址',
-            number          : '不是数字',
-            email           : '电子邮箱地址不可用',
-            email_repeat    : '电子邮件内容不符',
-            date            : '无效日期',
-            time            : '无效时间',
-            password_repeat : '密码不匹配',
-            no_match        : '没有匹配',
-            complete        : '输入不完整'
+            invalid         : 'inupt is not as expected',
+            short           : 'input is too short',
+            long            : 'input is too long',
+            checked         : 'must be checked',
+            empty           : 'please put something here',
+            select          : 'Please select an option',
+            number_min      : 'too low',
+            number_max      : 'too high',
+            url             : 'invalid URL',
+            number          : 'not a number',
+            email           : 'email address is invalid',
+            email_repeat    : 'emails do not match',
+            date            : 'invalid date',
+            time            : 'invalid time',
+            password_repeat : 'passwords do not match',
+            no_match        : 'no match',
+            complete        : 'input is not complete'
         },
 
         // default settings
@@ -117,8 +117,8 @@
                         return true;
                     };
 
-                    /*if( words.length < data.validateWords || !wordsLength(2) )
-                        return this.texts.complete;*/
+                    if( words.length < data.validateWords || !wordsLength(2) )
+                        return this.texts.complete;
 
                     return true;
                 }
@@ -133,7 +133,7 @@
                 }
 
                 // check if the field's value should obey any length limits, and if so, make sure the length of the value is as specified
-                /*if( data.lengthLimit && data.lengthLimit.length ){
+                if( data.lengthLimit && data.lengthLimit.length ){
                     while( data.lengthLimit.length ){
                         if( data.lengthLimit.pop() == data.value.length ){
                             return true;
@@ -141,7 +141,7 @@
                     }
 
                     return this.texts.complete;
-                }*/
+                }
 
                 if( data.pattern ){
                     var regex, jsRegex;

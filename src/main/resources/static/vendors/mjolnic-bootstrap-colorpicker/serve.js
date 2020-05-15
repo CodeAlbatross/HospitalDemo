@@ -1,5 +1,5 @@
 /*
- Script for serving AdminPage.html and other static content with Node.
+ Script for serving index.html and other static content with Node.
  Run it using `node serve` from your terminal and navigate to http://localhost:5000
  in order to test your changes in the browser.
  */
@@ -14,7 +14,7 @@ var http = require('http'), fs = require('fs'), mimeTypes = {
 };
 
 http.createServer(function (req, res) {
-  var file = (req.url === '/') ? 'AdminPage.html' : "." + req.url;
+  var file = (req.url === '/') ? 'index.html' : "." + req.url;
   var ext = require('path').extname(file),
     type = (mimeTypes[ext] ? mimeTypes[ext] : '');
 

@@ -36,7 +36,7 @@ gulp.task('bootstrap', function () {
 gulp.task('links', function (callback) {
 	var options = {
 		pageUrls: [
-			'AdminPage.html',
+			'index.html',
 			'examples/basic.html',
 			'examples/clear-formatting.html',
 			'examples/events.html',
@@ -63,5 +63,5 @@ gulp.task('minify', function () {
 
 // Watch files for changes
 gulp.task('watch', function () {
-    gulp.watch(['src/*.js', 'AdminPage.html', 'examples/*.html'], ['js', 'html', 'bootstrap', 'links', 'minify']);
+    gulp.watch(['src/*.js', 'index.html', 'examples/*.html'], ['js', 'html', 'bootstrap', 'links', 'minify']);
 });

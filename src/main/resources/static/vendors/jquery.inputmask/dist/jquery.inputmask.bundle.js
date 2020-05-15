@@ -823,7 +823,7 @@
                     }
                 }
             }
-            return true;
+            return complete;
         }
         function patchValueProperty(npt) {
             function patchValhook(type) {

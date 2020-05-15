@@ -13,7 +13,7 @@ module.exports = function (grunt) {
       development: {
         options: {
           pageUrls: [
-            'AdminPage.html',
+            'index.html',
             'examples/basic.html',
             'examples/clear-formatting.html',
             'examples/events.html',
