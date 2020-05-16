@@ -186,4 +186,10 @@ public class DoctorController {
 
     }
 
+    public String HospitalizationAndMedication(){
+        return null;
+    }
+
+
+
 }

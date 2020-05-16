@@ -98,8 +98,6 @@ public class PatientController {
     @PutMapping(value = "/submitpatient")
     public String submit(Patient patient,
                          HttpSession session){
-
-
         patientRepository.save(patient);
         session.setAttribute("loginuser",patient.getPatName());
         return "redirect:/updatepatient/"+patient.getId();

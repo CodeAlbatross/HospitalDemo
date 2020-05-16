@@ -2,8 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.entities.Admin;
 import com.example.demo.entities.Doctor;
+import com.example.demo.entities.Patient;
+import com.example.demo.entities.Sickroom;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.DoctorRepository;
+import com.example.demo.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +25,44 @@ public class AdminController {
     DoctorRepository doctorRepository;
     @Autowired
     AdminRepository adminRepository;
+    @Autowired
+    PatientRepository patientRepository;
 
     @GetMapping("/doctors")
     public String list(Model model){
         Collection<Doctor> doctors = doctorRepository.findAll();
         model.addAttribute("docs",doctors);
         return "JDBCForAdmin/listforDoctor";
+    }
+
+    @GetMapping("/patients")
+    public String patientList(Model model){
+        Collection<Patient> patients = patientRepository.findAll();
+        model.addAttribute("pats",patients);
+        return "JDBCForAdmin/listforPatients";
+    }
+
+    /**
+     * @param id 患者id
+     * @return
+     * 删除一对多的多端时，要解除一端对于多端的联系
+     */
+    @DeleteMapping("/patients/{id}")
+    public String delete(@PathVariable("id") Integer id){
+        System.out.println("删除患者"+patientRepository.findById(id));
+        Patient patient = patientRepository.findById(id).get();
+        int id1 = patient.getDoctor().getId();//找到医生的id
+
+        Sickroom sickroom= patient.getSickroom();
+        Doctor doctor=patient.getDoctor();
+
+        doctor.getPatients().remove(patient);
+        sickroom.getPatients().remove(patient);
+
+
+        patientRepository.deleteById(id);
+
+        return "redirect:/patients";
     }
 
     //转到新增医生页面

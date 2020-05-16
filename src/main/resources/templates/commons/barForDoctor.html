@@ -42,14 +42,7 @@
                             <li><a href="#" th:href="@{/addPatient/}+${session.id}">添加患者信息</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-edit"></i> 病房查询 <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#" th:href="@{/sickrooms/1}">病房列表</a></li>
-                            <li><a href="#" th:href="@{/AdminSickroomByDoctor}">管理病房</a></li>
-
-
-                        </ul>
-                    </li>
+                    <li><a href="#" th:href="@{/sickrooms/1}"><i class="fa fa-laptop" ></i> 病房列表 </a></li>
                     <li><a href="#" th:href="@{/updatedoctor/}+${session.id}"><i class="fa fa-laptop" ></i> 个人信息维护 </a></li>
 
 

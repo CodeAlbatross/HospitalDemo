@@ -37,12 +37,12 @@
       <div class="main_container">
 
         <!--引入侧边栏-->
-        <div th:replace="commons/barForDoctor::sidebar"></div>
+        <div th:replace="commons/barForAdmin::sidebar"></div>
 
         <!-- 顶部导航 -->
         <div class="top_nav">
           <!--引入顶部栏-->
-          <div th:replace="commons/barForDoctor::topbar"></div>
+          <div th:replace="commons/barForAdmin::topbar"></div>
         </div>
         <!-- /顶部导航 -->
 
@@ -51,7 +51,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>我的患者信息列表</h3>
+                <h3>患者信息列表</h3>
               </div>
             </div>
 
@@ -94,6 +94,8 @@
                                 <th>病房</th>
                                 <th>床位号</th>
                                 <th>联系方式</th>
+                                <th>住院费用</th>
+                                <th>是否结清</th>
                                 <th>操作</th>
                               </tr>
                             </thead>
@@ -112,12 +114,10 @@
                                 <td th:text="${pat.patRoomName}">61</td>
                                 <td th:text="${pat.patBedNum}">2011/04/25</td>
                                 <td th:text="${pat.patTel}">320,800</td>
+                                <td th:text="${pat.totalCost}">2011/04/25</td>
+                                <td th:text="${pat.totalCost}">2011/04/25</td>
                                 <td>
-                                  <a class="btn btn-sm btn-primary" th:href="@{/patient/}+${pat.id}">编辑</a>
-                                  <a class="btn btn-sm btn-primary" th:href="@{/cost/}+${pat.id}">住院与用药</a>
-                                  <br>
-                                  <a class="btn btn-sm btn-success" th:href="@{/medicalCard/}+${pat.id}">病历</a>
-                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/patient/}+${pat.id}">删除</button>
+                                  <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/patients/}+${pat.id}">出院</button>
                                 </td>
 
                               </tr>

@@ -18,7 +18,7 @@ public class MedicalCardController {
     TblRepository tblRepository;
 
     /**
-     *
+     * 患者查看病历
      * @param id 患者id
      * @param model
      * @return
@@ -33,9 +33,17 @@ public class MedicalCardController {
 
     }
 
-    @GetMapping(value = "/MedicalCardForDoctor/{id}")
-    public String MedicalCardForDoctor(@PathVariable("id") Integer id){
-        return "JDBCForPatient/MedicalCard";
-
+    /**
+     * 查看患者病历
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/medicalCard/{id}")
+    public String medCard(@PathVariable("id") Integer id,
+                          Model model){
+        TblCard tblCard = tblRepository.findByPatient(patientRepository.findById(id).orElse(null));
+        model.addAttribute("tbl",tblCard);
+        return "JDBCForDoctor/MedicalCard";
     }
 }
