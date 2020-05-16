@@ -36,7 +36,7 @@ public class Patient {
     @Column
     private final String role="patient";
     @Column
-    private Integer totalCost=0;
+    private float totalCost=0;
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)//可选属性optional=false,表示doctor不能为空。删除病人，不影响医生
     @JoinColumn(name = "doctor_id")
@@ -187,11 +187,11 @@ public class Patient {
         this.medicines = medicines;
     }
 
-    public Integer getTotalCost() {
+    public float getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(Integer totalCost) {
+    public void setTotalCost(float totalCost) {
         this.totalCost = totalCost;
     }
 

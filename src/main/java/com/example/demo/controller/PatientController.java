@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.base.myDate;
 import com.example.demo.entities.Doctor;
+import com.example.demo.entities.Medicine;
 import com.example.demo.entities.Patient;
 import com.example.demo.entities.Sickroom;
 import com.example.demo.repository.DoctorRepository;
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
 
 @Controller
 public class PatientController {
@@ -101,6 +107,48 @@ public class PatientController {
         patientRepository.save(patient);
         session.setAttribute("loginuser",patient.getPatName());
         return "redirect:/updatepatient/"+patient.getId();
+    }
+
+    /**
+     * 费用清单
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/mycost/{id}")
+    public String cost(@PathVariable("id") Integer id,
+                       Model model) throws ParseException {
+
+        Patient patient = patientRepository.findById(id).orElse(null);
+
+        Collection<Medicine> medicines1 = patient.getMedicines();
+
+        if (patient.getMedicines().isEmpty()){
+            model.addAttribute("medsforpat",null);
+        }else {
+            model.addAttribute("medsforpat",medicines1);
+        }
+
+        float totalCost=0;
+        //计算药费
+        for (Medicine medicine : medicines1) {
+            totalCost += medicine.getMedicineCost();
+        }
+        //计算天数
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        myDate myDate = new myDate();
+        myDate.setBeginDate(patient.getBirth());
+        myDate.setFinDate(df.format(new Date()));
+
+        totalCost+=myDate.num()*patient.getSickroom().getRoomCost();
+        model.addAttribute("totalcost",totalCost);//总费用
+        model.addAttribute("daynum",myDate.num());//住院天数
+        model.addAttribute("roomcost",myDate.num()*patient.getSickroom().getRoomCost());//床费
+        patient.setTotalCost(totalCost);
+
+        patientRepository.save(patient);
+        return "/JDBCForPatient/costforPatients";
     }
 
 }

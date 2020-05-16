@@ -31,12 +31,12 @@
       <div class="main_container">
 
         <!--引入侧边栏-->
-        <div th:replace="commons/barForDoctor::sidebar"></div>
+        <div th:replace="commons/barForPatient::sidebar"></div>
 
         <!-- 顶部导航 -->
         <div class="top_nav">
           <!--引入顶部栏-->
-          <div th:replace="commons/barForDoctor::topbar"></div>
+          <div th:replace="commons/barForPatient::topbar"></div>
         </div>
         <!-- /顶部导航 -->
 
@@ -70,29 +70,11 @@
                   </div>
                   <div class="x_content">
                     <div class="row">
-                        <form class="col-sm-12" th:action="@{/addMed/}+${id}">
-                      <div class="col-sm-12">
-
-
-                        <div class="field item form-groupc">
-                          <label class="col-form-label col-md-3 col-sm-3  label-align">药品<span
-                                  class="required">*</span></label>
-                          <div class="col-md-6 col-sm-6 ">
-                            <select class="form-control" name="addmed">
-                              <option  th:each="med:${meds}" th:text="${med.medicineName}">Choose option</option>
-                            </select>
-                          </div>
-                            <button  class="btn btn-primary" >添加</button>
-                        </div>
-                      </div>
-                      </form>
-
-
 
                       <div class="col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>添加药品</h2>
+                                    <h2>费用单</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -119,6 +101,32 @@
                                             <td th:text="${meds.medicineCost}">Otto</td>
                                         </tr>
                                         </tbody>
+                                    </table>
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th >住院天数</th>
+                                            <th >费用</th>
+                                        </tr>
+                                        <tbody>
+                                        <tr>
+                                            <td th:text="${daynum}">Mark</td>
+                                            <td th:text="${roomcost}">Otto</td>
+                                        </tr>
+                                        </tbody>
+                                        </thead>
+
+                                    </table>
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>费用总计:</th>
+                                            <th th:text="${totalcost}"></th>
+                                        </tr>
+                                        </thead>
+
                                     </table>
 
                                 </div>

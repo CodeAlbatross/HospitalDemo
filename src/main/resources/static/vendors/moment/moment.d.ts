@@ -292,9 +292,9 @@ declare namespace moment {
     */
     valueOf(): number;
 
-    local(): Moment; // current date/time in local mode
+    local(): Moment; // current myDate/time in local mode
 
-    utc(): Moment; // current date/time in UTC mode
+    utc(): Moment; // current myDate/time in UTC mode
 
     isValid(): boolean;
     invalidAt(): number;

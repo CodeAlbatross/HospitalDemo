@@ -43,6 +43,7 @@ public class AdminController {
     }
 
     /**
+     * 出院管理
      * @param id 患者id
      * @return
      * 删除一对多的多端时，要解除一端对于多端的联系

@@ -95,7 +95,7 @@
                                 <th>床位号</th>
                                 <th>联系方式</th>
                                 <th>住院费用</th>
-                                <th>是否结清</th>
+
                                 <th>操作</th>
                               </tr>
                             </thead>
@@ -115,7 +115,7 @@
                                 <td th:text="${pat.patBedNum}">2011/04/25</td>
                                 <td th:text="${pat.patTel}">320,800</td>
                                 <td th:text="${pat.totalCost}">2011/04/25</td>
-                                <td th:text="${pat.totalCost}">2011/04/25</td>
+
                                 <td>
                                   <button  type="submit" class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/patients/}+${pat.id}">出院</button>
                                 </td>

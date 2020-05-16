@@ -92,16 +92,23 @@ public class DoctorController {
         Doctor doctor = doctorRepository.findByDocName(patient.getPatDoctor());
         Sickroom sickroom = sickroomRepository.findByRoomName(patient.getPatRoomName());
 
+        //增加病人时床位被占用数+1，床号以此排序
+        sickroom.setOccupiedBed(sickroom.getOccupiedBed()+1);
+        patient.setPatBedNum(sickroom.getOccupiedBed());
+
         patient.setDoctor(doctor);
         patient.setSickroom(sickroom);
         //patient.setTblCard(null);
         tblCard.setPatient(patient);
 
+        //部分修改功能的bug，直接修改会导致id重复
         patient.setId(null);
         tblCard.setId(null);
 
         patientRepository.save(patient);
+        System.out.println("添加病人"+patient);
         tblRepository.save(tblCard);
+        sickroomRepository.save(sickroom);
 
         return "redirect:/patients/"+id;
 
@@ -121,12 +128,15 @@ public class DoctorController {
         Sickroom sickroom= patient.getSickroom();
         Doctor doctor=patient.getDoctor();
 
+        //删除病人时床位被占用数-1，床号以此排序
+        sickroom.setOccupiedBed(sickroom.getOccupiedBed()-1);
+
         doctor.getPatients().remove(patient);
         sickroom.getPatients().remove(patient);
 
 
         patientRepository.deleteById(id);
-
+        sickroomRepository.save(sickroom);
         return "redirect:/patients/"+id1;
     }
 
@@ -213,6 +223,12 @@ public class DoctorController {
     }
 
 
+    /**
+     * 把前端选中的药物添加到患者中
+     * @param id
+     * @param med
+     * @return
+     */
     @GetMapping(value = "/addMed/{id}")
     public String addMed(@PathVariable("id") Integer id,
                          @RequestParam("addmed") String med){
