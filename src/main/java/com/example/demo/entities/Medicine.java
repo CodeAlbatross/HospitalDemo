@@ -12,7 +12,7 @@ public class Medicine {
     private Integer id;
 
     @Column
-    private Integer medicineCost;
+    private float medicineCost;
 
     @Column
     private String medicineName;
@@ -28,11 +28,11 @@ public class Medicine {
         this.id = id;
     }
 
-    public Integer getMedicineCost() {
+    public float getMedicineCost() {
         return medicineCost;
     }
 
-    public void setMedicineCost(Integer medicineCost) {
+    public void setMedicineCost(float medicineCost) {
         this.medicineCost = medicineCost;
     }
 

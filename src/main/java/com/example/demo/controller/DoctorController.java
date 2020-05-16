@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.*;
-import com.example.demo.repository.DoctorRepository;
-import com.example.demo.repository.PatientRepository;
-import com.example.demo.repository.SickroomRepository;
-import com.example.demo.repository.TblRepository;
+import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +30,9 @@ public class DoctorController {
 
     @Autowired
     TblRepository tblRepository;
+
+    @Autowired
+    MedRepository medRepository;
 
     /**
      * 我的患者列表，获取医生id得到所属id患者信息
@@ -186,10 +187,41 @@ public class DoctorController {
 
     }
 
-    public String HospitalizationAndMedication(){
-        return null;
+    /**
+     * 给患者添加药物和住院信息
+     * @param id 患者id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/cost/{id}")
+    public String HospitalizationAndMedication(@PathVariable("id") Integer id,
+                                               Model model){
+        Collection<Medicine> medicines = medRepository.findAll();
+        Patient patient = patientRepository.findById(id).orElse(null);
+        model.addAttribute("meds",medicines);
+        Collection<Medicine> medicines1 = patient.getMedicines();
+
+        if (patient.getMedicines().isEmpty()){
+            model.addAttribute("medsforpat",null);
+        }else {
+            model.addAttribute("medsforpat",medicines1);
+        }
+
+        model.addAttribute("id",id);
+
+        return "/JDBCForDoctor/costforPatients";
     }
 
+
+    @GetMapping(value = "/addMed/{id}")
+    public String addMed(@PathVariable("id") Integer id,
+                         @RequestParam("addmed") String med){
+        Medicine medicine = medRepository.findByMedicineName(med);
+        Patient patient = patientRepository.findById(id).orElse(null);
+        patient.getMedicines().add(medicine);
+        patientRepository.save(patient);
+        return "redirect:/cost/"+id;
+    }
 
 
 }
