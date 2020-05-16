@@ -1,9 +1,11 @@
 package com.example.demo;
 
 import com.example.demo.entities.Doctor;
+import com.example.demo.entities.Medicine;
 import com.example.demo.entities.Patient;
 import com.example.demo.entities.Sickroom;
 import com.example.demo.repository.DoctorRepository;
+import com.example.demo.repository.MedRepository;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.repository.SickroomRepository;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ import org.springframework.test.context.junit4.statements.SpringFailOnTimeout;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -32,6 +35,28 @@ class DemoApplicationTests {
     SickroomRepository sickroomRepository;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    MedRepository medRepository;
+
+
+
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    public void addmed(){
+        /*Patient patient = patientRepository.findById(4).orElse(null);
+        Medicine medicine = medRepository.findById(2).orElse(null);
+        patient.getMedicines().add(medicine);*/
+        Patient patient = patientRepository.findById(24).orElse(null);
+        Set<Medicine> set = patient.getMedicines();
+        Iterator<Medicine> it = set.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next().getMedicineName());
+        }
+    }
+
+
+
 
     @Test
     public void saveroom(){
@@ -41,6 +66,9 @@ class DemoApplicationTests {
         sickroomRepository.save(sickroom);
 
     }
+
+
+
     @Test
     public void savepat(){
         Patient patient = new Patient();

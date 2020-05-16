@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_pat")
@@ -45,6 +47,9 @@ public class Patient {
 
     @OneToOne(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private TblCard tblCard;
+
+    @ManyToMany()
+    private Set<Medicine> medicines = new HashSet<>();
 
 
 
@@ -170,6 +175,14 @@ public class Patient {
 
     public void setTblCard(TblCard tblCard) {
         this.tblCard = tblCard;
+    }
+
+    public Set<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(Set<Medicine> medicines) {
+        this.medicines = medicines;
     }
 
     @Override
