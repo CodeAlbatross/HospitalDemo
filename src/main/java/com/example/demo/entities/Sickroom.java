@@ -29,6 +29,9 @@ public class Sickroom {
     @Column
     private String roomAdd;//病房地址
 
+    @Column
+    private Integer roomCost;//每日花费
+
 
 
     @OneToMany(mappedBy = "sickroom",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -96,6 +99,14 @@ public class Sickroom {
 
     public void setPatients(Set<Patient> patients) {
         this.patients = patients;
+    }
+
+    public int getRoomCost() {
+        return roomCost;
+    }
+
+    public void setRoomCost(Integer roomCost) {
+        this.roomCost = roomCost;
     }
 
     @Override

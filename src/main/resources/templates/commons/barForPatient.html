@@ -41,6 +41,7 @@
                             <li><a href="#" th:href="@{/MedicalCardForPatient/}+${session.id}">我的病历</a></li>
                             <li><a href="#" th:href="@{/myDoctor/}+${session.id}">我的主治医师</a></li>
                             <li><a href="#" th:href="@{/mySickroom/}+${session.id}">我的病房</a></li>
+                            <li><a href="#" th:href="@{/mySickroom/}+${session.id}">住院费用查询</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> 综合信息查询 <span class="fa fa-chevron-down"></span></a>
@@ -51,9 +52,6 @@
                         </ul>
                     </li>
                     <li><a href="#" th:href="@{/updatepatient/}+${session.id}"><i class="fa fa-laptop" ></i> 个人信息维护 </a></li>
-
-
-
 
                 </ul>
             </div>
