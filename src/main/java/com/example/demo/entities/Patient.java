@@ -51,6 +51,7 @@ public class Patient {
     private TblCard tblCard;
 
     @ManyToMany()
+    @JoinTable(name = "tbl_pat_medicines",joinColumns = {@JoinColumn(name = "patients_id")},inverseJoinColumns = {@JoinColumn(name = "medicines_id")})
     private Set<Medicine> medicines = new HashSet<>();
 
 

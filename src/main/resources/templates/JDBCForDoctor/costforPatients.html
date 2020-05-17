@@ -70,7 +70,7 @@
                   </div>
                   <div class="x_content">
                     <div class="row">
-                        <form class="col-sm-12" th:action="@{/addMed/}+${id}">
+                        <form class="col-sm-6" th:action="@{/addMed/}+${id}">
                       <div class="col-sm-12">
 
 
@@ -82,7 +82,12 @@
                               <option  th:each="med:${meds}" th:text="${med.medicineName}">Choose option</option>
                             </select>
                           </div>
-                            <button  class="btn btn-primary" >添加</button>
+                            <label class="col-form-label col-md-3 col-sm-3  label-align">数量<span
+                                    class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input class="form-control" name="count" type="number" step="1" min="1" max="100" value="1"/>
+                            </div>
+                            <button  class="btn btn-primary">添加</button>
                         </div>
                       </div>
                       </form>
@@ -111,12 +116,14 @@
                                         <tr>
                                             <th>药物名称</th>
                                             <th>费用</th>
+                                            <th>数量</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="meds:${medsforpat}">
-                                            <td th:text="${meds.medicineName}">Mark</td>
-                                            <td th:text="${meds.medicineCost}">Otto</td>
+                                        <tr th:each="meds:${medlist}">
+                                            <td th:text="${meds.medname}">Mark</td>
+                                            <td th:text="${meds.medcost}">Otto</td>
+                                            <td th:text="${meds.count}">Otto</td>
                                         </tr>
                                         </tbody>
                                     </table>

@@ -4,15 +4,11 @@ import com.example.demo.entities.*;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author lzyyy
@@ -33,6 +29,9 @@ public class DoctorController {
 
     @Autowired
     MedRepository medRepository;
+
+    @Autowired
+    PatMedRepository patMedRepository;
 
     /**
      * 我的患者列表，获取医生id得到所属id患者信息
@@ -198,7 +197,7 @@ public class DoctorController {
     }
 
     /**
-     * 给患者添加药物和住院信息
+     * 给患者添加药物
      * @param id 患者id
      * @param model
      * @return
@@ -210,6 +209,24 @@ public class DoctorController {
         Patient patient = patientRepository.findById(id).orElse(null);
         model.addAttribute("meds",medicines);
         Collection<Medicine> medicines1 = patient.getMedicines();
+
+        //找到患者的药物清单
+        Collection<PatMed> medicines2 = patMedRepository.findAllByPatient(patient);
+        Collection<medlist> medlists = new ArrayList<>();
+        for (PatMed patMed : medicines2) {
+            String patname = patMed.getPatient().getPatName();
+            String medname = patMed.getMedicine().getMedicineName();
+            int count = patMed.getCount();
+            float medcost = patMed.getMedicine().getMedicineCost();
+
+            medlist medlist1 = new medlist();
+            medlist1.setCount(count);
+            medlist1.setMedname(medname);
+            medlist1.setPatname(patname);
+            medlist1.setMedcost(medcost);
+            medlists.add(medlist1);
+        }
+        model.addAttribute("medlist",medlists);
 
         if (patient.getMedicines().isEmpty()){
             model.addAttribute("medsforpat",null);
@@ -231,11 +248,20 @@ public class DoctorController {
      */
     @GetMapping(value = "/addMed/{id}")
     public String addMed(@PathVariable("id") Integer id,
-                         @RequestParam("addmed") String med){
+                         @RequestParam("addmed") String med,
+                         @RequestParam("count") int count){
         Medicine medicine = medRepository.findByMedicineName(med);
         Patient patient = patientRepository.findById(id).orElse(null);
         patient.getMedicines().add(medicine);
         patientRepository.save(patient);
+
+        //先把患者和药品对应关系存进中间表，再向中间表添加药品数量
+        PatMed patMed = patMedRepository.findByPatientAndMedicine(patient,medicine);
+        System.out.println(count);
+        patMed.setCount(count);
+
+        patMedRepository.save(patMed);
+
         return "redirect:/cost/"+id;
     }
 

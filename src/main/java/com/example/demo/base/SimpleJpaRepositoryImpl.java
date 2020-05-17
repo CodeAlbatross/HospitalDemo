@@ -60,7 +60,6 @@ public class SimpleJpaRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> {
         //若根据ID查询结果为空
         if (!optionalT.isPresent()) {
             //新增
-
             em.persist(entity);
             return entity;
         } else {

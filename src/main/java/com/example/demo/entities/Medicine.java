@@ -17,7 +17,8 @@ public class Medicine {
     @Column
     private String medicineName;
 
-    @ManyToMany(mappedBy = "medicines")
+    @ManyToMany()
+    @JoinTable(name = "tbl_pat_medicines",joinColumns = {@JoinColumn(name = "medicines_id")},inverseJoinColumns = {@JoinColumn(name = "patients_id")})
     private Set<Patient> patients = new HashSet<>();
 
     public Integer getId() {
