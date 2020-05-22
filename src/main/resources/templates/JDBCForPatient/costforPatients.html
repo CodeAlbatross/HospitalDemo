@@ -93,12 +93,14 @@
                                         <tr>
                                             <th>药物名称</th>
                                             <th>费用</th>
+                                            <th>数量</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="meds:${medsforpat}">
-                                            <td th:text="${meds.medicineName}">Mark</td>
-                                            <td th:text="${meds.medicineCost}">Otto</td>
+                                        <tr th:each="meds:${medlist}">
+                                            <td th:text="${meds.medname}">Mark</td>
+                                            <td th:text="${meds.medcost}">Otto</td>
+                                            <td th:text="${meds.count}">Otto</td>
                                         </tr>
                                         </tbody>
                                     </table>

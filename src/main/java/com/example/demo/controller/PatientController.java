@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.base.myDate;
-import com.example.demo.entities.Doctor;
-import com.example.demo.entities.Medicine;
-import com.example.demo.entities.Patient;
-import com.example.demo.entities.Sickroom;
+import com.example.demo.entities.*;
 import com.example.demo.repository.DoctorRepository;
+import com.example.demo.repository.PatMedRepository;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.repository.SickroomRepository;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -33,6 +32,10 @@ public class PatientController {
 
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    PatMedRepository patMedRepository;
+
+
 
 
     /**
@@ -119,8 +122,8 @@ public class PatientController {
     public String cost(@PathVariable("id") Integer id,
                        Model model) throws ParseException {
 
+        //找到患者
         Patient patient = patientRepository.findById(id).orElse(null);
-
         Collection<Medicine> medicines1 = patient.getMedicines();
 
         if (patient.getMedicines().isEmpty()){
@@ -129,10 +132,29 @@ public class PatientController {
             model.addAttribute("medsforpat",medicines1);
         }
 
+        //找到患者的药物清单
+        Collection<PatMed> medicines2 = patMedRepository.findAllByPatient(patient);
+        Collection<medlist> medlists = new ArrayList<>();
+        for (PatMed patMed : medicines2) {
+            String patname = patMed.getPatient().getPatName();
+            String medname = patMed.getMedicine().getMedicineName();
+            int count = patMed.getCount();
+            float medcost = patMed.getMedicine().getMedicineCost();
+
+            medlist medlist1 = new medlist();
+            medlist1.setCount(count);
+            medlist1.setMedname(medname);
+            medlist1.setPatname(patname);
+            medlist1.setMedcost(medcost);
+            medlists.add(medlist1);
+        }
+        model.addAttribute("medlist",medlists);
+
+
         float totalCost=0;
         //计算药费
-        for (Medicine medicine : medicines1) {
-            totalCost += medicine.getMedicineCost();
+        for (PatMed patMed : medicines2) {
+            totalCost += patMed.getCount()*patMed.getMedicine().getMedicineCost();
         }
         //计算天数
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式

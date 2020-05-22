@@ -218,7 +218,6 @@ public class DoctorController {
             String medname = patMed.getMedicine().getMedicineName();
             int count = patMed.getCount();
             float medcost = patMed.getMedicine().getMedicineCost();
-
             medlist medlist1 = new medlist();
             medlist1.setCount(count);
             medlist1.setMedname(medname);
