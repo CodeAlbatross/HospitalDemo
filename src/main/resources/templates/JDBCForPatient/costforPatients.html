@@ -92,8 +92,10 @@
                                         <thead>
                                         <tr>
                                             <th>药物名称</th>
-                                            <th>费用</th>
+                                            <th>单价</th>
                                             <th>数量</th>
+                                            <th>单位</th>
+                                            <th>添加日期</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -101,6 +103,33 @@
                                             <td th:text="${meds.medname}">Mark</td>
                                             <td th:text="${meds.medcost}">Otto</td>
                                             <td th:text="${meds.count}">Otto</td>
+                                            <td th:text="${meds.medunit}"></td>
+                                            <td th:text="${meds.costData}">Otto</td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>手术费</th>
+                                            <th>护理费</th>
+                                            <th>诊查费</th>
+                                            <th>检查费</th>
+                                            <th>化验费</th>
+                                            <th>日期</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="list:${costlists}">
+                                            <td th:text="${list.surgeryFee}">Mark</td>
+                                            <td th:text="${list.nursingFee}">Otto</td>
+                                            <td th:text="${list.consultationFee}">Otto</td>
+                                            <td th:text="${list.inspectionFee}">Otto</td>
+                                            <td th:text="${list.labFee}">Otto</td>
+                                            <td th:text="${list.costData}">Otto</td>
                                         </tr>
                                         </tbody>
                                     </table>

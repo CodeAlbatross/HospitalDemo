@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.base.myDate;
 import com.example.demo.entities.*;
-import com.example.demo.repository.DoctorRepository;
-import com.example.demo.repository.PatMedRepository;
-import com.example.demo.repository.PatientRepository;
-import com.example.demo.repository.SickroomRepository;
+import com.example.demo.repository.*;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +32,8 @@ public class PatientController {
     @Autowired
     PatMedRepository patMedRepository;
 
+    @Autowired
+    costListRepository costListRepository;
 
 
 
@@ -138,14 +137,17 @@ public class PatientController {
         for (PatMed patMed : medicines2) {
             String patname = patMed.getPatient().getPatName();
             String medname = patMed.getMedicine().getMedicineName();
+            String costdata = patMed.getCostData();
+            String medunit = patMed.getMedicine().getMedicineUnit();
             int count = patMed.getCount();
             float medcost = patMed.getMedicine().getMedicineCost();
-
             medlist medlist1 = new medlist();
             medlist1.setCount(count);
             medlist1.setMedname(medname);
             medlist1.setPatname(patname);
             medlist1.setMedcost(medcost);
+            medlist1.setCostData(costdata);
+            medlist1.setMedunit(medunit);
             medlists.add(medlist1);
         }
         model.addAttribute("medlist",medlists);
@@ -164,11 +166,22 @@ public class PatientController {
         myDate.setFinDate(df.format(new Date()));
 
         totalCost+=myDate.num()*patient.getSickroom().getRoomCost();
-        model.addAttribute("totalcost",totalCost);//总费用
+
         model.addAttribute("daynum",myDate.num());//住院天数
         model.addAttribute("roomcost",myDate.num()*patient.getSickroom().getRoomCost());//床费
+
+        //计算费用清单中的费用
+        Collection<costList> costLists = costListRepository.findAllByPatient(patient);
+        Iterator<costList> iterator = costLists.iterator();
+        while (iterator.hasNext()){
+            costList costList = iterator.next();
+            System.out.println(costList.totalCost());
+            totalCost+=costList.totalCost();
+        }
+        model.addAttribute("costlists",costLists);
         patient.setTotalCost(totalCost);
 
+        model.addAttribute("totalcost",totalCost);//总费用
         patientRepository.save(patient);
         return "/JDBCForPatient/costforPatients";
     }
