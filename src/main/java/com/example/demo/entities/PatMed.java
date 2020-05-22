@@ -6,11 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_pat_medicines")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class PatMed {
+
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 32)
@@ -26,6 +29,13 @@ public class PatMed {
 
     @JoinColumn
     private Integer count;
+
+    @JoinColumn
+    private String costData;
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -58,6 +68,16 @@ public class PatMed {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    public String getCostData() {
+        return costData;
+    }
+
+    public void setCostData(String costData) {
+        this.costData = costData;
+    }
+
+
 
     @Override
     public String toString() {

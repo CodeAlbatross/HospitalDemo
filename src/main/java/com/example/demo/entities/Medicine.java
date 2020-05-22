@@ -17,6 +17,9 @@ public class Medicine {
     @Column
     private String medicineName;
 
+    @Column
+    private String medicineUnit;
+
     @ManyToMany()
     @JoinTable(name = "tbl_pat_medicines",joinColumns = {@JoinColumn(name = "medicines_id")},inverseJoinColumns = {@JoinColumn(name = "patients_id")})
     private Set<Patient> patients = new HashSet<>();
@@ -51,5 +54,13 @@ public class Medicine {
 
     public void setMedicineName(String medicineName) {
         this.medicineName = medicineName;
+    }
+
+    public String getMedicineUnit() {
+        return medicineUnit;
+    }
+
+    public void setMedicineUnit(String medicineUnit) {
+        this.medicineUnit = medicineUnit;
     }
 }

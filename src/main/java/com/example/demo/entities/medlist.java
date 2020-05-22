@@ -3,6 +3,8 @@ package com.example.demo.entities;
 public class medlist {
     private String medname;
     private String patname;
+    private String costData;
+    private String medunit;
     private float medcost;
     private int count;
 
@@ -36,6 +38,22 @@ public class medlist {
 
     public void setMedcost(float medcost) {
         this.medcost = medcost;
+    }
+
+    public String getCostData() {
+        return costData;
+    }
+
+    public void setCostData(String costData) {
+        this.costData = costData;
+    }
+
+    public String getMedunit() {
+        return medunit;
+    }
+
+    public void setMedunit(String medunit) {
+        this.medunit = medunit;
     }
 
     @Override

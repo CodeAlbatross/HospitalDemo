@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.entities.Doctor;
-import com.example.demo.entities.Medicine;
-import com.example.demo.entities.Patient;
-import com.example.demo.entities.Sickroom;
+import com.example.demo.entities.*;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.MedRepository;
 import com.example.demo.repository.PatientRepository;
@@ -67,6 +64,12 @@ class DemoApplicationTests {
 
     }
 
+    @Test
+    public void time(){
+        PatMed patMed = new PatMed();
+
+        System.out.println(patMed.getCostData());
+    }
 
 
     @Test

@@ -46,7 +46,6 @@ public class Patient {
     @JoinColumn(name = "room_id")
     private Sickroom sickroom;//所属病房
 
-
     @OneToOne(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private TblCard tblCard;
 
@@ -54,6 +53,13 @@ public class Patient {
     @JoinTable(name = "tbl_pat_medicines",joinColumns = {@JoinColumn(name = "patients_id")},inverseJoinColumns = {@JoinColumn(name = "medicines_id")})
     private Set<Medicine> medicines = new HashSet<>();
 
+
+
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    //级联保存、更新、删除、刷新;延迟加载。当删除用户，会级联删除该用户的所有文章
+    //拥有mappedBy注解的实体类为关系被维护端
+    //mappedBy="doctor"中的doctor是Patient中的doctor属性
+    private Set<costList> costLists = new HashSet<>();//每日清单
 
 
     public Doctor getDoctor() {
@@ -194,6 +200,14 @@ public class Patient {
 
     public void setTotalCost(float totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public Set<costList> getCostLists() {
+        return costLists;
+    }
+
+    public void setCostLists(Set<costList> costLists) {
+        this.costLists = costLists;
     }
 
     @Override
