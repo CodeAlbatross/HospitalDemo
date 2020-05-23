@@ -17,9 +17,13 @@ public class SickroomController {
 
     @GetMapping("/sickrooms/{id}")
     public String roomlist(Model model,
-                           @PathVariable("id") Integer id){
-        Collection<Sickroom> sickrooms = sickroomRepository.findAll();
+                           @PathVariable("id") Integer id,
+                           String department){
+        //Collection<Sickroom> sickrooms = sickroomRepository.findAll();
+        //根据科室将病房传回前端
+        Collection<Sickroom> sickrooms = sickroomRepository.findAllByRoomDepartment(department);
         model.addAttribute("rooms",sickrooms);
+
         if(id==0){
         return "JDBCForSickroom/listforSickroom";
         }else if (id==1){

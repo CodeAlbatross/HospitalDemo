@@ -30,6 +30,9 @@ public class Sickroom {
     private String roomAdd;//病房地址
 
     @Column
+    private String roomDepartment;//病房所属科室
+
+    @Column
     private Integer roomCost;//每日花费
 
 
@@ -107,6 +110,14 @@ public class Sickroom {
 
     public void setRoomCost(Integer roomCost) {
         this.roomCost = roomCost;
+    }
+
+    public String getRoomDepartment() {
+        return roomDepartment;
+    }
+
+    public void setRoomDepartment(String roomDepartment) {
+        this.roomDepartment = roomDepartment;
     }
 
     @Override

@@ -12,7 +12,7 @@
 <div class="col-md-3 left_col" th:fragment="sidebar">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/AdminPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>XX医院管理系统 !</span></a>
+            <a href="/AdminPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>病房管理系统 !</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -44,9 +44,15 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> 病房操作 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#" th:href="@{/sickrooms/0}">病房查询</a></li>
+                            <li><a>病房查询<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#" th:href="@{/sickrooms/0(department=血液科)}"> 血液科</a></li>
+                                <li><a href="#" th:href="@{/sickrooms/0(department=肿瘤科)}"> 肿瘤科 </a></li>
+                                <li><a href="#" th:href="@{/sickrooms/0(department=消化科)}"> 消化科 </a></li>
+                                <li><a href="#" th:href="@{/sickrooms/0(department=心内科)}"> 心内科 </a></li>
+                            </ul>
+                            </li>
                             <li><a href="#" th:href="@{/addSickroom}">添加病房</a></li>
-
 
                         </ul>
                     </li>

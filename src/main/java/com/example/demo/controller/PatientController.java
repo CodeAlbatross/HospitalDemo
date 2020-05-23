@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.base.myDate;
 import com.example.demo.entities.*;
 import com.example.demo.repository.*;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,14 +77,16 @@ public class PatientController {
     }
 
     /**
-     * 查询所有病房
+     * 查询病房
      * @param model
      * @return
      */
     @GetMapping(value = "/sickroomsforpatient")
-    public String sickrooms(Model model){
-        Collection<Sickroom> sickrooms = sickroomRepository.findAll();
+    public String sickrooms(Model model,
+                            String department){
+        Collection<Sickroom> sickrooms = sickroomRepository.findAllByRoomDepartment(department);
         model.addAttribute("rooms",sickrooms);
+
         return "JDBCForPatient/listforSickroom";
     }
 
@@ -175,7 +176,6 @@ public class PatientController {
         Iterator<costList> iterator = costLists.iterator();
         while (iterator.hasNext()){
             costList costList = iterator.next();
-            System.out.println(costList.totalCost());
             totalCost+=costList.totalCost();
         }
         model.addAttribute("costlists",costLists);

@@ -12,7 +12,7 @@
 <div class="col-md-3 left_col" th:fragment="sidebar">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/PatientPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>XX医院管理系统 !</span></a>
+            <a href="/PatientPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>病房管理系统 !</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -48,6 +48,14 @@
                         <ul class="nav child_menu">
                             <li><a href="#" th:href="@{/doctorsforpatient}">医生列表</a></li>
                             <li><a href="#" th:href="@{/sickroomsforpatient}">病房列表</a></li>
+                            <li><a><i class="fa fa-home"></i> 病房列表 <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="#" th:href="@{/sickroomsforpatient(department=血液科)}"> 血液科</a></li>
+                                    <li><a href="#" th:href="@{/sickroomsforpatient(department=肿瘤科)}"> 肿瘤科 </a></li>
+                                    <li><a href="#" th:href="@{/sickroomsforpatient(department=消化科)}"> 消化科 </a></li>
+                                    <li><a href="#" th:href="@{/sickroomsforpatient(department=心内科)}"> 心内科 </a></li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </li>

@@ -86,6 +86,7 @@
                               <tr>
 
                                 <th>病房名称</th>
+                                <th>所在科室</th>
                                 <th>负责人</th>
                                 <th>最大床位</th>
                                 <th>剩余床位</th>
@@ -101,6 +102,7 @@
                               <tr th:each="room:${rooms}">
 
                                 <td th:text="${room.roomName}">System Architect</td>
+                                <td th:text="${room.roomDepartment}"></td>
                                 <td th:text="${room.roomAdminName}">Edinburgh</td>
                                 <td th:text="${room.bedMaxNum}">61</td>
                                 <td th:text="${room.bedMaxNum}-${room.occupiedBed}"th:style="${room.bedMaxNum}-${room.occupiedBed}==0?'color:red':''" ></td>
@@ -115,9 +117,7 @@
                           </table>
                         </div>
                       </div>
-                      <form id="deleteDocForm" method="post">
-                        <input type="hidden" name="_method" value="delete"/>
-                      </form>
+
                     </div>
                   </div>
                 </div>
@@ -162,13 +162,7 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-    <script>
-      $(".deleteBtn").click(function(){
-        //删除当前员工的信息
-        $("#deleteDocForm").attr("action",$(this).attr("del_uri")).submit();
-        return false;
-      });
-    </script>
+
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>

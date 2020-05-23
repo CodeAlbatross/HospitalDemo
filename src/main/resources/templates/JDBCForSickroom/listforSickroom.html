@@ -86,6 +86,7 @@
                               <tr>
 
                                 <th>病房名称</th>
+                                <th>所属科室</th>
                                 <th>负责人</th>
                                 <th>最大床位</th>
                                 <th>床位费/天</th>
@@ -100,6 +101,7 @@
                               <tr th:each="room:${rooms}">
 
                                 <td th:text="${room.roomName}">System Architect</td>
+                                <td th:text="${room.roomDepartment}">System Architect</td>
                                 <td th:text="${room.roomAdminName}">Edinburgh</td>
                                 <td th:text="${room.bedMaxNum}">61</td>
                                 <td th:text="${room.roomCost}">61</td>

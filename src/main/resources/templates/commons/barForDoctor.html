@@ -12,7 +12,7 @@
 <div class="col-md-3 left_col" th:fragment="sidebar">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/DoctorPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>XX医院管理系统 !</span></a>
+            <a href="/DoctorPage.html" class="site_title"><i class="glyphicon glyphicon-chevron-up"></i> <span>病房管理系统 !</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -42,7 +42,14 @@
                             <li><a href="#" th:href="@{/addPatient/}+${session.id}">添加患者信息</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" th:href="@{/sickrooms/1}"><i class="fa fa-laptop" ></i> 病房列表 </a></li>
+                    <li><a><i class="fa fa-home"></i> 病房列表 <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="#" th:href="@{/sickrooms/1(department=血液科)}"> 血液科</a></li>
+                            <li><a href="#" th:href="@{/sickrooms/1(department=肿瘤科)}"> 肿瘤科 </a></li>
+                            <li><a href="#" th:href="@{/sickrooms/1(department=消化科)}"> 消化科 </a></li>
+                            <li><a href="#" th:href="@{/sickrooms/1(department=心内科)}"> 心内科 </a></li>
+                        </ul>
+                    </li>
                     <li><a href="#" th:href="@{/updatedoctor/}+${session.id}"><i class="fa fa-laptop" ></i> 个人信息维护 </a></li>
 
 
