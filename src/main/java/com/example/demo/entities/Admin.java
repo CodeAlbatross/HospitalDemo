@@ -9,16 +9,15 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
     private Integer id;
     @Column
-    private String adminName;
+    private String adminName;//姓名
     @Column
-    private String adminPsw;
+    private String adminPsw;//密码
     @Column
-    private String adminAccount;
+    private String adminAccount;//账号
     @Column
-    private String adminEmail;
-
+    private String adminEmail;//邮箱
     @Column
-    private final String role = "admin";
+    private final String role = "admin";//实体角色
 
     public Integer getId() {
         return id;

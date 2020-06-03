@@ -51,7 +51,6 @@ public class CostListController {
                               costList costList){
         Patient patient = patientRepository.findById(id).orElse(null);
         costList.setPatient(patient);
-
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         costList.setCostData(df.format(new Date()));
         costList.setId(null);
